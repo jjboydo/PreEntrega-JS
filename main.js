@@ -1,21 +1,49 @@
-let nombreUsuario = prompt("Bienvenido! Por favor, ingresa tu nombre:");
-let edad = validarNumero("Por favor, ingresa tu edad:");
-
-let sexo = prompt("Por favor, ingresa tu sexo (M | F)");
-while(sexo != "m" && sexo != "f" && sexo != "M" && sexo != "F"){
-    alert("El dato ingresado no es valido. Por favor ingrese nuevamente");
-    sexo = prompt("Por favor, ingresa tu sexo (M | F)");
+function Usuario(nombre, edad, sexo, objetivo, altura, peso, rutinas){
+    this.nombre = nombre;
+    this.edad = edad;
+    this.sexo = sexo;
+    this.objetivo = objetivo;
+    this.altura = altura;
+    this.peso = peso;
+    this.rutinas = rutinas;
 }
 
-let objetivo = prompt("Cual es tu objetivo? (Perder peso | Ganar musculo)");
-while(objetivo != "perder peso" && objetivo != "Perder peso" && objetivo != "ganar musculo" && objetivo != "Ganar musculo"){
-    alert("El dato ingresado no es valido. Por favor ingrese nuevamente");
-    objetivo = prompt("Cual es tu objetivo? (Perder peso | Ganar musculo)");
+function Rutina(nombre, duracion, frecuencia){
+    this.nombre = nombre;
+    this.duracion = duracion;
+    this.frecuencia = frecuencia;
+    this.ejercicios = this.ejercicios;
 }
 
-let altura = validarNumero("Cual es tu altura en cm?");
+function Ejercicio(nombre, repeticiones, series, peso){
+    this.nombre = nombre;
+    this.repeticiones = repeticiones;
+    this.series = series;
+    this.peso = peso;
+}
 
-let peso = validarNumero("Cual es tu peso en kg?");
+function crearUsuario(){
+    let nombreUsuario = prompt("Bienvenido! Por favor, ingresa tu nombre:");
+    let edad = validarNumero("Por favor, ingresa tu edad:");
+    
+    let sexo = prompt("Por favor, ingresa tu sexo (M | F)");
+    while(sexo != "m" && sexo != "f" && sexo != "M" && sexo != "F"){
+        alert("El dato ingresado no es valido. Por favor ingrese nuevamente");
+        sexo = prompt("Por favor, ingresa tu sexo (M | F)");
+    }
+    
+    let objetivo = prompt("Cual es tu objetivo? (Perder peso | Ganar musculo)");
+    while(objetivo != "perder peso" && objetivo != "Perder peso" && objetivo != "ganar musculo" && objetivo != "Ganar musculo"){
+        alert("El dato ingresado no es valido. Por favor ingrese nuevamente");
+        objetivo = prompt("Cual es tu objetivo? (Perder peso | Ganar musculo)");
+    }
+    
+    let altura = validarNumero("Cual es tu altura en cm?");
+    
+    let peso = validarNumero("Cual es tu peso en kg?");
+
+    return new Usuario(nombreUsuario, edad, sexo, objetivo, altura, peso);
+}
 
 let minutosEjercicio = 0;
 let diasEjercicio = 0;
@@ -79,10 +107,14 @@ function validarNumero(mensaje) {
     return entrada;
 }
 
+// Creacion de un usuario
+
+const usuario = crearUsuario();
+
 // Carga de ejercicios
 
 while (seguirCargando){
-    let ejercicio = prompt("Ingresa un ejercicio a realizar (fuerza, funcional, cardio)");
+    let ejercicio = prompt("Ingresa una Rutina a realizar (fuerza, funcional, cardio)");
     let minutos = validarNumero("¿Cuántos minutos dedicarás a: " + ejercicio + " cada día?");
     let dias = validarNumero("¿Cuántos días a la semana harás " + ejercicio + "?");
 
@@ -93,8 +125,8 @@ while (seguirCargando){
 
 // Mostrar resumen
 
-alert("Resumen de " + nombreUsuario);
-alert("Objetivo de Fitness: " + objetivo);
+alert("Resumen de " + usuario.nombre);
+alert("Objetivo de Fitness: " + usuario.objetivo);
 alert("Total de minutos de ejercicio por semana: " + calcularTiempoTotal());
 mostrarCalorias();
 
