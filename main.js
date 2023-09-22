@@ -5,14 +5,14 @@ function Usuario(nombre, edad, sexo, objetivo, altura, peso, rutinas){
     this.objetivo = objetivo;
     this.altura = altura;
     this.peso = peso;
-    this.rutinas = rutinas;
+    this.rutinas = rutinas; // Array de objeto Rutina
 }
 
-function Rutina(nombre, duracion, frecuencia){
+function Rutina(nombre, duracion, frecuencia, ejercicios){
     this.nombre = nombre;
     this.duracion = duracion;
     this.frecuencia = frecuencia;
-    this.ejercicios = this.ejercicios;
+    this.ejercicios = ejercicios; // Array de objeto Ejercicio
 }
 
 function Ejercicio(nombre, repeticiones, series, peso){
@@ -42,7 +42,9 @@ function crearUsuario(){
     
     let peso = validarNumero("Cual es tu peso en kg?");
 
-    return new Usuario(nombreUsuario, edad, sexo, objetivo, altura, peso);
+    let rutinas = [];
+
+    return new Usuario(nombreUsuario, edad, sexo, objetivo, altura, peso, rutinas);
 }
 
 let minutosEjercicio = 0;
@@ -111,10 +113,35 @@ function validarNumero(mensaje) {
 
 const usuario = crearUsuario();
 
+// Cargar nuevo ejercicio
+
+function cargarEjercicio(){
+    let nombre = prompt("Ingresa el nombre del ejercicio");
+    let series = prompt("Ingrese cantidad de series");
+    let repeticiones = prompt("Ingrese cantidad de repeticiones");
+    let peso = prompt("Ingrese el peso con el que realizó el ejercicio");
+    return new Ejercicio(nombre,repeticiones,series,peso);
+}
+
+// Crear nueva rutina
+
+function crearRutina(){
+    let nombreRutina = prompt("Ingresa un nombre para la nueva rutina");
+    let duracion = validarNumero("¿Cuántos minutos dedicarás a: " + nombreRutina + "?");
+    let frecuencia = validarNumero("¿Cuántos días a la semana harás " + nombreRutina + "?");
+    let seguirCargando;
+    let ejercicios = [];
+    do {
+        ejercicios.push(cargarEjercicio());
+        seguirCargando = confirm("Desea seguir cargando ejercicios?");
+    } while (seguirCargando);
+    let rutina = new Rutina(nombreRutina,duracion,frecuencia,ejercicios);
+}
+
 // Carga de ejercicios
 
 while (seguirCargando){
-    let ejercicio = prompt("Ingresa una Rutina a realizar (fuerza, funcional, cardio)");
+    let ejercicio = prompt("Ingresa un nombre para la nueva rutina (fuerza, funcional, cardio)");
     let minutos = validarNumero("¿Cuántos minutos dedicarás a: " + ejercicio + " cada día?");
     let dias = validarNumero("¿Cuántos días a la semana harás " + ejercicio + "?");
 
