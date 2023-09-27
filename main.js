@@ -47,33 +47,34 @@ function crearUsuario(){
     return new Usuario(nombreUsuario, edad, sexo, objetivo, altura, peso, rutinas);
 }
 
-let minutosEjercicio = 0;
-let diasEjercicio = 0;
-let seguirCargando = true;
 
 // Función para calcular el tiempo total de ejercicio
 
 function calcularTiempoTotal() {
-    return minutosEjercicio * diasEjercicio;
+    let tiempoTotal = 0;
+    for (const rutina of usuario.rutinas) {
+        tiempoTotal += rutina.duracion * rutina.frecuencia;
+    }
+    return tiempoTotal;
 }
 
 // Función para calcular las calorias necesarias para mantener el peso
 
-function calcularCaloriasMantenimiento (edad, peso, altura, sexo){
-    if(sexo.toLowerCase === "m"){
-        return (10 * peso + 6.25 * altura - 5 * edad + 5) * calcularFactorActividad(calcularTiempoTotal());
+function calcularCaloriasMantenimiento (){
+    if(usuario.sexo.toLowerCase === "m"){
+        return (10 * usuario.peso + 6.25 * usuario.altura - 5 * usuario.edad + 5) * calcularFactorActividad(calcularTiempoTotal());
     } else {
-        return (10 * peso + 6.25 * altura - 5 * edad - 161) * calcularFactorActividad(calcularTiempoTotal());
+        return (10 * usuario.peso + 6.25 * usuario.altura - 5 * usuario.edad - 161) * calcularFactorActividad(calcularTiempoTotal());
     }
 }
 
 // Función para mostrar las calorias que debe consumir el usuario, segun sus objetivos y caracterisiticas
 
 function mostrarCalorias(){
-    if(objetivo.toLowerCase() === "ganar musculo"){
-        alert("Para ganar músculo, debes consumir un total de: " + (calcularCaloriasMantenimiento(edad,peso,altura,sexo) + 300) + " calorias.");
+    if(usuario.objetivo.toLowerCase() === "ganar musculo"){
+        alert("Para ganar músculo, debes consumir un total de: " + (calcularCaloriasMantenimiento() + 300) + " calorias.");
     } else {
-        alert("Para perder grasa, debes consumir un total de: " + (calcularCaloriasMantenimiento(edad,peso,altura,sexo) - 300) + " calorias.");
+        alert("Para perder grasa, debes consumir un total de: " + (calcularCaloriasMantenimiento() - 300) + " calorias.");
     }
 }
 
@@ -109,9 +110,6 @@ function validarNumero(mensaje) {
     return entrada;
 }
 
-// Creacion de un usuario
-
-const usuario = crearUsuario();
 
 // Cargar nuevo ejercicio
 
@@ -136,24 +134,61 @@ function crearRutina(){
         seguirCargando = confirm("Desea seguir cargando ejercicios?");
     } while (seguirCargando);
     let rutina = new Rutina(nombreRutina,duracion,frecuencia,ejercicios);
+    usuario.rutinas.push(rutina);
 }
 
-// Carga de ejercicios
+// Mostrar las rutinas del usuario
 
-while (seguirCargando){
-    let ejercicio = prompt("Ingresa un nombre para la nueva rutina (fuerza, funcional, cardio)");
-    let minutos = validarNumero("¿Cuántos minutos dedicarás a: " + ejercicio + " cada día?");
-    let dias = validarNumero("¿Cuántos días a la semana harás " + ejercicio + "?");
-
-    minutosEjercicio += minutos;
-    diasEjercicio += dias;
-    seguirCargando = confirm("Desea seguir cargando ejercicios?");
+function mostrarRutinas() {
+    for (const rutina of usuario.rutinas) {
+        console.log("-------------------");
+        console.log("Rutina: " + rutina.nombre);
+        for (const ejercicio of rutina.ejercicios) {
+            console.log(`${ejercicio.nombre} --> ${ejercicio.series} series de ${ejercicio.repeticiones} repeticiones con ${ejercicio.peso} kg`);
+        }
+    }
 }
 
 // Mostrar resumen
 
-alert("Resumen de " + usuario.nombre);
-alert("Objetivo de Fitness: " + usuario.objetivo);
-alert("Total de minutos de ejercicio por semana: " + calcularTiempoTotal());
-mostrarCalorias();
+function mostrarResumen (){
+    alert("Resumen de " + usuario.nombre);
+    alert("Objetivo de Fitness: " + usuario.objetivo);
+    alert("Total de minutos de ejercicio por semana: " + calcularTiempoTotal());
+}
+
+// Creacion de un usuario
+
+const usuario = crearUsuario();
+let opcion = 1;
+
+while(opcion){
+    opcion = Number(prompt(`Seleccione una ópcion:
+    1- Mostrar resumen del usuario
+    2- Mostrar calorias a consumir
+    3- Cargar nueva rutina
+    4- Mostrar rutinas
+    5- FUNCIONES
+    `));
+    switch (opcion) {
+        case 1:
+            mostrarResumen();
+            break;
+        case 2:
+            mostrarCalorias();
+            break;
+        case 3:
+            crearRutina();
+            break;
+        case 4:
+            mostrarRutinas();
+            break;
+        case 0:
+            alert("Despedida");
+            break;
+        default:
+            alert("Opcion no válida")
+            break;
+    }
+}
 
