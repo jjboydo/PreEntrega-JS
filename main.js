@@ -23,7 +23,7 @@ function Ejercicio(nombre, repeticiones, series, peso){
 }
 
 function crearUsuario(){
-    let nombreUsuario = prompt("Bienvenido! Por favor, ingresa tu nombre:");
+    let nombreUsuario = prompt("Bienvenido a ProFit! Por favor, ingresa tu nombre:");
     let edad = validarNumero("Por favor, ingresa tu edad:");
     
     let sexo = prompt("Por favor, ingresa tu sexo (M | F)");
@@ -51,10 +51,7 @@ function crearUsuario(){
 // Función para calcular el tiempo total de ejercicio
 
 function calcularTiempoTotal() {
-    let tiempoTotal = 0;
-    for (const rutina of usuario.rutinas) {
-        tiempoTotal += rutina.duracion * rutina.frecuencia;
-    }
+    let tiempoTotal = usuario.rutinas.reduce((acumulador, rutina) => acumulador + (rutina.duracion * rutina.frecuencia), 0);
     return tiempoTotal;
 }
 
@@ -72,9 +69,9 @@ function calcularCaloriasMantenimiento (){
 
 function mostrarCalorias(){
     if(usuario.objetivo.toLowerCase() === "ganar musculo"){
-        alert("Para ganar músculo, debes consumir un total de: " + (calcularCaloriasMantenimiento() + 300) + " calorias.");
+        alert("Para ganar músculo, debes consumir un total de: " + (Math.round(calcularCaloriasMantenimiento()) + 300) + " calorias.");
     } else {
-        alert("Para perder grasa, debes consumir un total de: " + (calcularCaloriasMantenimiento() - 300) + " calorias.");
+        alert("Para perder grasa, debes consumir un total de: " + (Math.round(calcularCaloriasMantenimiento()) - 300) + " calorias.");
     }
 }
 
@@ -114,10 +111,10 @@ function validarNumero(mensaje) {
 // Cargar nuevo ejercicio
 
 function cargarEjercicio(){
-    let nombre = prompt("Ingresa el nombre del ejercicio");
-    let series = prompt("Ingrese cantidad de series");
-    let repeticiones = prompt("Ingrese cantidad de repeticiones");
-    let peso = prompt("Ingrese el peso con el que realizó el ejercicio");
+    let nombre = prompt("Ingresa el nombre del ejercicio a incluir en la rutina");
+    let series = validarNumero("Ingrese cantidad de series");
+    let repeticiones = validarNumero("Ingrese cantidad de repeticiones");
+    let peso = validarNumero("Ingrese el peso con el que realizó el ejercicio");
     return new Ejercicio(nombre,repeticiones,series,peso);
 }
 
@@ -125,6 +122,10 @@ function cargarEjercicio(){
 
 function crearRutina(){
     let nombreRutina = prompt("Ingresa un nombre para la nueva rutina");
+    while (usuario.rutinas.some((rut) => rut.nombre === nombreRutina)) {
+        alert("Ya existe una rutina con ese nombre. Por favor ingrese otro nombre");
+        nombreRutina = prompt("Ingresa un nombre para la nueva rutina");
+    }
     let duracion = validarNumero("¿Cuántos minutos dedicarás a: " + nombreRutina + "?");
     let frecuencia = validarNumero("¿Cuántos días a la semana harás " + nombreRutina + "?");
     let seguirCargando;
@@ -140,12 +141,18 @@ function crearRutina(){
 // Mostrar las rutinas del usuario
 
 function mostrarRutinas() {
-    for (const rutina of usuario.rutinas) {
-        console.log("-------------------");
-        console.log("Rutina: " + rutina.nombre);
-        for (const ejercicio of rutina.ejercicios) {
-            console.log(`${ejercicio.nombre} --> ${ejercicio.series} series de ${ejercicio.repeticiones} repeticiones con ${ejercicio.peso} kg`);
+    if(usuario.rutinas.length != 0){
+        let mensaje = "Rutinas del usuario:\n";
+        for (const rutina of usuario.rutinas) {
+            mensaje += "-------------------\n";
+            mensaje += "Rutina: " + rutina.nombre + "\n";
+            for (const ejercicio of rutina.ejercicios) {
+                mensaje += `${ejercicio.nombre} --> ${ejercicio.series} series de ${ejercicio.repeticiones} repeticiones con ${ejercicio.peso} kg\n`;
+            }
         }
+        alert(mensaje);
+    } else {
+        alert("No hay rutinas cargadas");
     }
 }
 
@@ -157,18 +164,32 @@ function mostrarResumen (){
     alert("Total de minutos de ejercicio por semana: " + calcularTiempoTotal());
 }
 
+// Modificar un ejercicio
+
+function agregarEjericio() {
+    let nombre = prompt("Ingresa el nombre de la rutina a la que desea agregar un ejercicio");
+    let rutinaElegida = usuario.rutinas.findIndex((rut) => rut.nombre === nombre);
+    if (rutinaElegida != -1) {
+        usuario.rutinas[rutinaElegida].ejercicios.push(cargarEjercicio());
+    } else {
+        alert("Rutina no existente.");
+    }
+}
+
 // Creacion de un usuario
 
 const usuario = crearUsuario();
 let opcion = 1;
 
+// Menú
+
 while(opcion){
-    opcion = Number(prompt(`Seleccione una ópcion:
+    opcion = Number(prompt(`ProFit! Seleccione una ópcion:
     1- Mostrar resumen del usuario
     2- Mostrar calorias a consumir
     3- Cargar nueva rutina
     4- Mostrar rutinas
-    5- FUNCIONES
+    5- Agregar un ejercicio a rutina
     `));
     switch (opcion) {
         case 1:
@@ -183,8 +204,10 @@ while(opcion){
         case 4:
             mostrarRutinas();
             break;
+        case 5:
+            agregarEjericio();
+            break;
         case 0:
-            alert("Despedida");
             break;
         default:
             alert("Opcion no válida")
