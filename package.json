@@ -1,0 +1,11 @@
+{
+  "name": "1ra-entrega-js",
+  "version": "1.0.0",
+  "description": "- Simulador interactivo de Fitness y Salud\r - CoderHouse\r - Comision #47070",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

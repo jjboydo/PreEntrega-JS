@@ -1,0 +1,418 @@
+@import url("https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.grid {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 271px 1fr;
+  gap: 0px;
+  height: 100%;
+}
+
+.header {
+  position: fixed;
+  background-color: #13441D;
+  width: 271px;
+  height: 100vh;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  grid-row-end: 2;
+  grid-column-end: 2;
+}
+.header h1 {
+  font-family: "MuseoModerno", cursive;
+}
+.header h1 a {
+  color: #4BCE65;
+  text-decoration: none;
+}
+.header .datosUsuario {
+  padding-top: 1.875rem;
+  padding-bottom: 1.875rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header .datosUsuario h2 {
+  font-family: "MuseoModerno", cursive;
+  font-size: 20px;
+  color: #EBFAEE;
+  justify-self: center;
+}
+.header .datosUsuario h3 {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  color: #EBFAEE;
+}
+
+.unstyled {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.unstyled a {
+  text-decoration: none;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80vh;
+}
+.navbar ul {
+  border-top: solid 1px #13441D;
+}
+.navbar li {
+  border-bottom: solid 1px #13441D;
+  display: flex;
+  justify-content: end;
+  padding-right: 1.875rem;
+  transition: 2.15s linear color;
+}
+.navbar li:hover {
+  background-color: #4BCE65;
+}
+.navbar a {
+  padding: 1.1em 0;
+  color: #EBFAEE;
+  font: 400 1.125em "MuseoModerno", cursive;
+  text-align: center;
+}
+.navbar a:hover {
+  color: #fff;
+}
+
+main {
+  grid-row-start: 1;
+  grid-column-start: 2;
+  grid-row-end: 2;
+  grid-column-end: 3;
+  background-color: #EBFAEE;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 200px 360px 360px 360px 360px;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2.5rem 0rem;
+}
+
+.logo {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  grid-row-end: 2;
+  grid-column-end: 2;
+  padding-left: 3.75rem;
+}
+.logo img {
+  width: 14.875rem;
+  padding-top: 3rem;
+}
+
+.bienvenida {
+  grid-row-start: 2;
+  grid-column-start: 1;
+  grid-row-end: 3;
+  grid-column-end: 3;
+  width: 80%;
+  height: 80%;
+  background: white;
+  box-shadow: 4px 4px 4px rgba(77, 149, 83, 0.11);
+  border-radius: 12px;
+  margin-left: 3.75rem;
+}
+.bienvenida h2 {
+  padding: 2.5rem 2.125rem;
+  padding-bottom: 0rem;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-family: "MuseoModerno", cursive;
+  color: #051408;
+}
+.bienvenida h2 strong {
+  color: #4BCE65;
+}
+.bienvenida p {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 275;
+  line-height: normal;
+  font-family: "Poppins", sans-serif;
+  padding: 1.875rem;
+}
+
+.objetivo {
+  grid-row-start: 2;
+  grid-column-start: 3;
+  grid-row-end: 3;
+  grid-column-end: 4;
+  justify-self: end;
+  margin-right: 15%;
+  width: 350px;
+  height: 100%;
+  background-color: #4BCE65;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.objetivo h2 {
+  font-family: "MuseoModerno", cursive;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: #EBFAEE;
+}
+.objetivo .obj {
+  color: #13441D;
+}
+.objetivo .kcal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #13441D;
+  font-size: 32px;
+  font-weight: bolder;
+  line-height: normal;
+}
+.objetivo .kcal strong {
+  font-size: 80px;
+  line-height: 90%;
+}
+.objetivo h4 {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: #EBFAEE;
+  font-family: "MuseoModerno", cursive;
+}
+
+.rutinas, .ejercicios {
+  grid-row-start: 3;
+  grid-column-start: 1;
+  grid-row-end: 4;
+  grid-column-end: 4;
+  margin-left: 3.75rem;
+  width: 91%;
+  height: 100%;
+  background-color: #13441D;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.rutinas h2, .ejercicios h2 {
+  font-family: "MuseoModerno", cursive;
+  font-size: 32px;
+  color: #EBFAEE;
+  padding: 1.875rem 2.5rem;
+  padding-bottom: 0rem;
+}
+.rutinas table, .ejercicios table {
+  width: 90%;
+  margin: 0 5%;
+  text-align: left;
+}
+.rutinas table thead tr th, .ejercicios table thead tr th {
+  font-family: "MuseoModerno", cursive;
+  font-size: 1rem;
+  color: #4BCE65;
+}
+.rutinas table tbody td, .ejercicios table tbody td {
+  background-color: rgba(255, 255, 255, 0);
+  transition: all 0.2s linear;
+  transition-delay: 0.1s, 0s;
+  opacity: 0.6;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  color: #EBFAEE;
+  font-weight: bold;
+}
+.rutinas table tr:hover td, .ejercicios table tr:hover td {
+  background-color: #4BCE65;
+  transition-delay: 0s, 0s;
+  opacity: 1;
+  font-size: 1.01em;
+}
+.rutinas table td, .ejercicios table td {
+  transform-origin: center left;
+  transition-property: transform;
+  transition-duration: 0.1s;
+  transition-timing-function: ease-in-out;
+}
+.rutinas table tr:hover td, .ejercicios table tr:hover td {
+  transform: scale(1.01);
+}
+.rutinas table th, .ejercicios table th, .rutinas table td, .ejercicios table td {
+  padding: 0.5em;
+}
+
+.cargarRutina {
+  grid-row-start: 4;
+  grid-column-start: 2;
+  grid-row-end: 5;
+  grid-column-end: 3;
+  background-color: #4BCE65;
+  border-radius: 12px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  padding: 0.9375rem;
+}
+.cargarRutina h2 {
+  font-size: 32px;
+  font-family: "MuseoModerno", cursive;
+  color: #13441D;
+  padding-bottom: 0.75rem;
+}
+.cargarRutina .form-rutina {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.cargarRutina .form-rutina label {
+  font-size: 20px;
+  font-family: "MuseoModerno", cursive;
+  color: #13441D;
+}
+.cargarRutina .form-rutina div {
+  display: flex;
+  align-items: center;
+  gap: 1.875rem;
+}
+.cargarRutina .form-rutina div input {
+  padding-left: 1rem;
+  font-family: "Poppins", sans-serif;
+  height: 2.625rem;
+  width: 6.25rem;
+  border-radius: 0.75rem;
+  background-color: #EBFAEE;
+  border: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.cargarRutina .form-rutina .nombre-rutina {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.625rem;
+}
+.cargarRutina .form-rutina .nombre-rutina input {
+  width: 100%;
+}
+.cargarRutina .form-rutina .buttons {
+  display: flex;
+  justify-content: space-around;
+}
+.cargarRutina .form-rutina .buttons button {
+  border-radius: 0.75rem;
+  background-color: #EBFAEE;
+  font-family: "MuseoModerno", cursive;
+  font-weight: bold;
+  width: 9.375rem;
+  height: 2.5rem;
+  border: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+.cargarRutina .form-rutina .buttons .guardar {
+  background-color: #13441D;
+  color: #EBFAEE;
+  width: 11.25rem;
+}
+
+.ejercicios {
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+
+.inicio {
+  grid-row-start: 6;
+  grid-row-end: 7;
+  margin-left: 3.75rem;
+  width: 31.25rem;
+  height: 37.5rem;
+  background-color: #13441D;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.inicio img {
+  padding: 1.875rem 0;
+  width: 12.5rem;
+}
+.inicio .form-inicio {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 0 1.25rem;
+}
+.inicio .form-inicio legend {
+  font-family: "Poppins", sans-serif;
+  color: #EBFAEE;
+  text-align: center;
+}
+.inicio .form-inicio label {
+  font-size: 20px;
+  font-family: "MuseoModerno", cursive;
+  color: #4BCE65;
+}
+.inicio .form-inicio .selects {
+  display: flex;
+  gap: 0.625rem;
+}
+.inicio .form-inicio .selects select {
+  border-radius: 0.75rem;
+  height: 1.875rem;
+  font-family: "MuseoModerno", cursive;
+  font-weight: bold;
+  background-color: #EBFAEE;
+  border: none;
+}
+.inicio .form-inicio div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3.5rem;
+  gap: 1.875rem;
+}
+.inicio .form-inicio div input {
+  padding-left: 1rem;
+  font-family: "Poppins", sans-serif;
+  height: 2.625rem;
+  width: 6.25rem;
+  border-radius: 0.75rem;
+  background-color: #EBFAEE;
+  border: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.inicio .form-inicio .nombre-usuario {
+  display: flex;
+}
+.inicio .form-inicio .nombre-usuario input {
+  width: 100%;
+}
+.inicio .form-inicio button {
+  align-self: center;
+  border-radius: 0.75rem;
+  background-color: #4BCE65;
+  font-family: "MuseoModerno", cursive;
+  font-weight: bold;
+  font-size: 1rem;
+  width: 9.375rem;
+  height: 2.5rem;
+  border: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=style.css.map */

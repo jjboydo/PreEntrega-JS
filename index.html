@@ -4,11 +4,194 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador de Fitness y Salud</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
-<body>
-    <h1>ProFit: Simulador interactivo de Fitness y Salud</h1>
-    <h2>Segunda entrega</h2>
+<body class="grid">
+    <header class="header">
+        <div class="datosUsuario">
+            <h2>Usuario</h2>
+            <h3>usuario@gmail.com</h3>
+        </div>
+        <nav class="navbar">
+            <ul class="unstyled">
+                <li><a href="#">Perfil</a></li>
+                <li><a href="#rutinas">Rutinas</a></li>
+                <li><a href="#">Ejercicios</a></li>
+                <li><a href="#">Comida del dia</a></li>
+            </ul>
+            <ul class="unstyled logout">
+                <li><a href="#">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1><a class="logo" href="index.html"><img src="./assets/img/profit-logo.png" alt="Pro-Fit"></a></h1>        
 
-    <script src="main.js"></script>
+        <section class="bienvenida">
+            <h2>Bienvenido, <strong>Usuario</strong></h2>
+            <p>Lorem ipsum dolor sit amet consectetur. Dui turpis hendrerit vulputate
+                fermentum vestibulum. Diam sed ornare porta aliquam turpis metus posuere feugiat. Non bibendum faucibus non
+                facilisi tincidunt libero habitasse. Tristique elementum enim scelerisque congue semper nibh cum.</p>
+        </section>
+
+        <section class="objetivo">
+            <h2>Objetivo</h2>
+            <h2 class="obj">GANAR MUSCULO</h2>
+            <h2 class="kcal"><strong>3000</strong>kcal</h2>
+            <h4 class="actividad">Moderadamente activo</h4>
+        </section>
+
+        <section id="rutinas" class="rutinas">
+            <h2>Rutinas cargadas</h2>
+            <table id="rutinas-table">
+                <thead>
+                    <tr>
+                        <th>Nombre de Rutina</th>
+                        <th>Duración</th>
+                        <th>Días a la Semana</th>
+                        <th>Detalle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Rutina 1</td>
+                        <td>30 minutos</td>
+                        <td>3</td>
+                        <td><button>+</button></td>
+                    </tr>
+                    <tr class="ejercicios" id="rutina1">
+                        <td colspan="4">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Ejercicio</th>
+                                        <th>Repeticiones</th>
+                                        <th>Series</th>
+                                        <!-- Puedes agregar más encabezados si es necesario -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Cada ejercicio será una fila en la subtabla -->
+                                    <tr>
+                                        <td>Ejercicio 1</td>
+                                        <td>10</td>
+                                        <td>3</td>
+                                    </tr>
+                                    <!-- Puedes agregar más ejercicios aquí -->
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Rutina 2</td>
+                        <td>45 minutos</td>
+                        <td>2</td>
+                        <td><button>+</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="cargarRutina">
+            <h2>Cargar nueva rutina</h2>
+            <form action="" id="formulario" class="form-rutina">
+                <div class="nombre-rutina">
+                    <label for="nombre">Nombre de Rutina:</label>
+                    <input type="text" name="nombre" id="nombreRutina" required>
+                </div>
+
+                <div>
+                    <label for="duracion">Duración (min):</label>
+                    <input type="number" name="duracion" id="duracion" required>
+                </div>
+
+                <div>
+                    <label for="dias">Días a la semana:</label>
+                    <input type="number" name="dias" id="dias" required>
+                </div>
+
+
+                <div class="buttons">
+                    <button type="reset" value="cancelar" >Cancelar</button>
+                    <button type="submit" value="guardar" class="guardar">Seleccionar ejercicios</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="ejercicios" class="ejercicios">
+            <h2>Ejercicios que puedes agregar</h2>
+            <table id="ejercicios-table">
+                <thead>
+                    <tr>
+                        <th>Ejercicio</th>
+                        <th>Series</th>
+                        <th>Repeticiones</th>
+                        <th>Peso</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Press Banca</td>
+                        <td>3</td>
+                        <td>5</td>
+                        <td>50 kg</td>
+                        <td><button>+</button></td>
+                    </tr>
+                    <tr>
+                        <td>Sentadilla</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>100 kg</td>
+                        <td><button>+</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="inicio">
+            <img src="./assets/img/profit-logo.png" alt="Logo ProFit">
+            <form action="" id="form-incio" class="form-inicio">
+                <legend>Bienvenido a <strong>ProFit</strong>. Antes de comenzar, por favor ingrese los siguientes datos:</legend>
+                <div class="nombre-usuario">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" name="nombre" id="nombreRutina" required>
+                </div>
+                <div class="selects">
+                    <label for="sexo">Sexo:</label>
+                    <select name="sexo" id="sexo">
+                        <option value="" disabled selected>...</option>
+                        <option value="M">M</option>
+                        <option value="F">F</option>
+                    </select>
+                    <label for="objetivo">Objetivo:</label>
+                    <select name="objetivo" id="objetivo">
+                        <option value="" disabled selected>Elige un objetivo...</option>
+                        <option value="Ganar Musculo">Ganar Músculo</option>
+                        <option value="Perder Peso">Perder Peso</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="edad">Edad:</label>
+                    <input type="number" name="edad" id="edad" required>
+                </div>
+                <div>
+                    <label for="altura">Altura (cm):</label>
+                    <input type="number" name="altura" id="altura" required>
+                </div>
+                <div>
+                    <label for="peso">Peso (kg):</label>
+                    <input type="number" name="peso" id="peso" required>
+                </div>
+
+                <button type="submit" value="comenzar" class="Comenzar">Comenzar</button>
+            </form>
+        </section>
+
+    </main>
+    <footer>
+
+    </footer>
+    <!-- <script src="main.js"></script> -->
 </body>
 </html>
