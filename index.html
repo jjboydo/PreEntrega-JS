@@ -9,8 +9,8 @@
 <body class="">
     <header class="header oculto">
         <div class="datosUsuario">
+            <img src="./assets/img/avatar.png" alt="avatar">
             <h2>Usuario</h2>
-            <h3>Edad</h3>
         </div>
         <nav class="navbar">
             <ul class="unstyled">
@@ -51,15 +51,15 @@
                 </div>
                 <div>
                     <label for="edad">Edad:</label>
-                    <input type="number" name="edad" id="edad" required>
+                    <input type="number" name="edad" id="edad" min="1" max="100" required>
                 </div>
                 <div>
                     <label for="altura">Altura (cm):</label>
-                    <input type="number" name="altura" id="altura" required>
+                    <input type="number" name="altura" id="altura" min="1" required>
                 </div>
                 <div>
                     <label for="peso">Peso (kg):</label>
-                    <input type="number" name="peso" id="peso" required>
+                    <input type="number" name="peso" id="peso" min="1" required>
                 </div>
 
                 <button type="submit" value="comenzar" class="Comenzar">Comenzar</button>
@@ -76,7 +76,7 @@
         <section class="objetivo oculto">
             <h2>Objetivo</h2>
             <h2 class="obj">GANAR MUSCULO</h2>
-            <h2 class="kcal"><strong>3000</strong>kcal</h2>
+            <h2 class="kcal"><strong>1</strong>kcal</h2>
             <h4 class="actividad">Moderadamente activo</h4>
         </section>
 

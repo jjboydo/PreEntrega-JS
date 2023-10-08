@@ -42,7 +42,6 @@ function desplegarSitio() {
     })
 
     header.querySelector(".datosUsuario h2").textContent = usuarioRegistrado.nombre;
-    header.querySelector(".datosUsuario h3").textContent = usuarioRegistrado.edad + " años";
 
     document.querySelector(".bienvenida h2 strong").textContent = usuarioRegistrado.nombre;
 }
@@ -51,9 +50,8 @@ function actualizarHTML() {
     const section = document.querySelector(".objetivo");
 
     section.querySelector(".obj").textContent = usuarioRegistrado.objetivo.toUpperCase();
-    usuarioRegistrado.objetivo === "Ganar Musculo" ? section.querySelector(".kcal strong").textContent = Math.round(calcularCaloriasMantenimiento()) + 300 : Math.round(calcularCaloriasMantenimiento()) - 300;
+    usuarioRegistrado.objetivo === "Ganar Musculo" ? section.querySelector(".kcal strong").textContent = Math.round(calcularCaloriasMantenimiento()) + 300 : section.querySelector(".kcal strong").textContent = Math.round(calcularCaloriasMantenimiento()) - 300;
     section.querySelector(".actividad").textContent = calcularFactorActividad(calcularTiempoTotal()).nombre;
-    
 }
 
 const formularioInicio = document.querySelector('#form-inicio');

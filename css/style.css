@@ -32,22 +32,18 @@
   text-decoration: none;
 }
 .header .datosUsuario {
-  padding-top: 1.875rem;
-  padding-bottom: 1.875rem;
+  padding: 1.875rem 1.25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .header .datosUsuario h2 {
+  padding-top: 0.625rem;
   font-family: "MuseoModerno", cursive;
   font-size: 30px;
   color: #EBFAEE;
   justify-self: center;
-}
-.header .datosUsuario h3 {
-  font-family: "Poppins", sans-serif;
-  font-size: 16px;
-  color: #EBFAEE;
+  text-align: center;
 }
 
 .unstyled {
