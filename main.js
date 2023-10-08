@@ -24,9 +24,6 @@ function Ejercicio(nombre, repeticiones, series, peso){
 
 function desplegarSitio() {
 
-/*     const inicio = document.querySelector(".inicio");
-    inicio.classList.add("oculto"); */
-
     const body = document.querySelector("body");
     body.classList.add("grid");
 
@@ -43,9 +40,24 @@ function desplegarSitio() {
     secciones.forEach( seccion => {
         seccion.classList.contains("inicio") ? seccion.classList.add("oculto") : seccion.classList.remove("oculto");
     })
+
+    header.querySelector(".datosUsuario h2").textContent = usuarioRegistrado.nombre;
+    header.querySelector(".datosUsuario h3").textContent = usuarioRegistrado.edad + " años";
+
+    document.querySelector(".bienvenida h2 strong").textContent = usuarioRegistrado.nombre;
+}
+
+function actualizarHTML() {
+    const section = document.querySelector(".objetivo");
+
+    section.querySelector(".obj").textContent = usuarioRegistrado.objetivo.toUpperCase();
+    usuarioRegistrado.objetivo === "Ganar Musculo" ? section.querySelector(".kcal strong").textContent = Math.round(calcularCaloriasMantenimiento()) + 300 : Math.round(calcularCaloriasMantenimiento()) - 300;
+    section.querySelector(".actividad").textContent = calcularFactorActividad(calcularTiempoTotal()).nombre;
+    
 }
 
 const formularioInicio = document.querySelector('#form-inicio');
+let usuarioRegistrado;
 
 function crearUsuario(evt){
 
@@ -59,37 +71,28 @@ function crearUsuario(evt){
     let peso = formularioInicio.querySelector("#peso").value;
     let rutinas = [];
     
-    const usuarioRegistrado = new Usuario(nombreUsuario, edad, sexo, objetivo, altura, peso, rutinas);
+    usuarioRegistrado = new Usuario(nombreUsuario, edad, sexo, objetivo, altura, peso, rutinas);
     console.log(usuarioRegistrado);
 
     desplegarSitio();
+    actualizarHTML();
 }
 
 
 // Función para calcular el tiempo total de ejercicio
 
 function calcularTiempoTotal() {
-    let tiempoTotal = usuario.rutinas.reduce((acumulador, rutina) => acumulador + (rutina.duracion * rutina.frecuencia), 0);
+    let tiempoTotal = usuarioRegistrado.rutinas.reduce((acumulador, rutina) => acumulador + (rutina.duracion * rutina.frecuencia), 0);
     return tiempoTotal;
 }
 
 // Función para calcular las calorias necesarias para mantener el peso
 
 function calcularCaloriasMantenimiento (){
-    if(usuario.sexo.toLowerCase === "m"){
-        return (10 * usuario.peso + 6.25 * usuario.altura - 5 * usuario.edad + 5) * calcularFactorActividad(calcularTiempoTotal());
+    if(usuarioRegistrado.sexo === "M"){
+        return (10 * usuarioRegistrado.peso + 6.25 * usuarioRegistrado.altura - 5 * usuarioRegistrado.edad + 5) * calcularFactorActividad(calcularTiempoTotal()).factor;
     } else {
-        return (10 * usuario.peso + 6.25 * usuario.altura - 5 * usuario.edad - 161) * calcularFactorActividad(calcularTiempoTotal());
-    }
-}
-
-// Función para mostrar las calorias que debe consumir el usuario, segun sus objetivos y caracterisiticas
-
-function mostrarCalorias(){
-    if(usuario.objetivo.toLowerCase() === "ganar musculo"){
-        alert("Para ganar músculo, debes consumir un total de: " + (Math.round(calcularCaloriasMantenimiento()) + 300) + " calorias.");
-    } else {
-        alert("Para perder grasa, debes consumir un total de: " + (Math.round(calcularCaloriasMantenimiento()) - 300) + " calorias.");
+        return (10 * usuarioRegistrado.peso + 6.25 * usuarioRegistrado.altura - 5 * usuarioRegistrado.edad - 161) * calcularFactorActividad(calcularTiempoTotal()).factor;
     }
 }
 
@@ -98,17 +101,25 @@ function mostrarCalorias(){
 function calcularFactorActividad (minutosEjercicioSemanal){
     switch(true){
         case (minutosEjercicioSemanal < 120):
-            alert("Usted es una persona Sedentaria.");
-            return 1.55;
+            return {
+                nombre: "Sedentario",
+                factor: 1.2
+            };
         case (minutosEjercicioSemanal < 300):
-            alert("Usted es una persona Moderadamente Activa.");
-            return 1.85; 
+            return {
+                nombre: "Moderadamente Activo",
+                factor: 1.55
+            }; 
         case (minutosEjercicioSemanal < 600):
-            alert("Usted es una persona Muy Activa.");
-            return 2.2;
+            return {
+                nombre: "Muy Activo",
+                factor: 1.725
+            };
         default:
-            alert("Usted es una persona Extremadamente Activa.");
-            return 1.85;                     
+            return {
+                nombre: "Extremadamente Activo",
+                factor: 1.9
+            };                     
     }
 }
 
