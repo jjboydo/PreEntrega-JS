@@ -14,6 +14,7 @@
 }
 
 .header {
+  display: block;
   position: fixed;
   background-color: #13441D;
   width: 271px;
@@ -88,11 +89,22 @@
 }
 
 main {
+  background-color: #EBFAEE;
+  background-image: url(../assets/img/foto-inicio.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.grid-main {
   grid-row-start: 1;
   grid-column-start: 2;
   grid-row-end: 2;
   grid-column-end: 3;
-  background-color: #EBFAEE;
   height: 100%;
   display: grid;
   grid-template-rows: 200px 360px 360px 360px 360px;
@@ -332,12 +344,9 @@ main {
 }
 
 .inicio {
-  grid-row-start: 6;
-  grid-row-end: 7;
-  margin-left: 3.75rem;
   width: 31.25rem;
   height: 37.5rem;
-  background-color: #13441D;
+  background-color: #EBFAEE;
   border-radius: 20px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   display: flex;
@@ -358,13 +367,13 @@ main {
 }
 .inicio .form-inicio legend {
   font-family: "Poppins", sans-serif;
-  color: #EBFAEE;
+  color: #13441D;
   text-align: center;
 }
 .inicio .form-inicio label {
   font-size: 20px;
   font-family: "MuseoModerno", cursive;
-  color: #4BCE65;
+  color: #13441D;
 }
 .inicio .form-inicio .selects {
   display: flex;
@@ -375,8 +384,10 @@ main {
   height: 1.875rem;
   font-family: "MuseoModerno", cursive;
   font-weight: bold;
-  background-color: #EBFAEE;
+  background-color: #13441D;
   border: none;
+  color: #EBFAEE;
+  opacity: 90%;
 }
 .inicio .form-inicio div {
   display: flex;
@@ -391,9 +402,11 @@ main {
   height: 2.625rem;
   width: 6.25rem;
   border-radius: 0.75rem;
-  background-color: #EBFAEE;
+  background-color: #13441D;
   border: none;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #EBFAEE;
+  opacity: 90%;
 }
 .inicio .form-inicio .nombre-usuario {
   display: flex;
@@ -413,6 +426,10 @@ main {
   border: none;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   cursor: pointer;
+}
+
+.oculto {
+  display: none;
 }
 
 /*# sourceMappingURL=style.css.map */

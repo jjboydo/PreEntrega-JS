@@ -22,29 +22,23 @@ function Ejercicio(nombre, repeticiones, series, peso){
     this.peso = peso;
 }
 
-function crearUsuario(){
-    let nombreUsuario = prompt("Bienvenido a ProFit! Por favor, ingresa tu nombre:");
-    let edad = validarNumero("Por favor, ingresa tu edad:");
-    
-    let sexo = prompt("Por favor, ingresa tu sexo (M | F)");
-    while(sexo != "m" && sexo != "f" && sexo != "M" && sexo != "F"){
-        alert("El dato ingresado no es valido. Por favor ingrese nuevamente");
-        sexo = prompt("Por favor, ingresa tu sexo (M | F)");
-    }
-    
-    let objetivo = prompt("Cual es tu objetivo? (Perder peso | Ganar musculo)");
-    while(objetivo != "perder peso" && objetivo != "Perder peso" && objetivo != "ganar musculo" && objetivo != "Ganar musculo"){
-        alert("El dato ingresado no es valido. Por favor ingrese nuevamente");
-        objetivo = prompt("Cual es tu objetivo? (Perder peso | Ganar musculo)");
-    }
-    
-    let altura = validarNumero("Cual es tu altura en cm?");
-    
-    let peso = validarNumero("Cual es tu peso en kg?");
+const formularioInicio = document.querySelector('#form-inicio');
 
+function crearUsuario(evt){
+
+    evt.preventDefault();
+
+    let nombreUsuario = formularioInicio.querySelector("#nombreUser").value;
+    let edad = formularioInicio.querySelector("#edad").value;
+    let sexo = formularioInicio.querySelector("#sexo").value;
+    let objetivo = formularioInicio.querySelector("#objetivo").value;
+    let altura = formularioInicio.querySelector("#altura").value;
+    let peso = formularioInicio.querySelector("#peso").value;
     let rutinas = [];
+    
+    const usuarioRegistrado = new Usuario(nombreUsuario, edad, sexo, objetivo, altura, peso, rutinas);
+    console.log(usuarioRegistrado);
 
-    return new Usuario(nombreUsuario, edad, sexo, objetivo, altura, peso, rutinas);
 }
 
 
@@ -178,12 +172,11 @@ function agregarEjericio() {
 
 // Creacion de un usuario
 
-const usuario = crearUsuario();
-let opcion = 1;
+formularioInicio.addEventListener('submit', crearUsuario);
 
 // Menú
 
-while(opcion){
+/* while(opcion){
     opcion = Number(prompt(`ProFit! Seleccione una ópcion:
     1- Mostrar resumen del usuario
     2- Mostrar calorias a consumir
@@ -213,5 +206,5 @@ while(opcion){
             alert("Opcion no válida")
             break;
     }
-}
+} */
 

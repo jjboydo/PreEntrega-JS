@@ -6,8 +6,8 @@
     <title>Simulador de Fitness y Salud</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
-<body class="grid">
-    <header class="header">
+<body class="">
+    <header class="header oculto">
         <div class="datosUsuario">
             <h2>Usuario</h2>
             <h3>usuario@gmail.com</h3>
@@ -24,24 +24,63 @@
             </ul>
         </nav>
     </header>
-    <main>
-        <h1><a class="logo" href="index.html"><img src="./assets/img/profit-logo.png" alt="Pro-Fit"></a></h1>        
+    <main class="">
+        <h1><a class="logo oculto" href="index.html"><img src="./assets/img/profit-logo.png" alt="Pro-Fit"></a></h1>        
 
-        <section class="bienvenida">
+        <section class="inicio">
+            <img src="./assets/img/profit-logo.png" alt="Logo ProFit">
+            <form action="" id="form-inicio" class="form-inicio">
+                <legend>Bienvenido a <strong>ProFit</strong>. Antes de comenzar, por favor ingrese los siguientes datos:</legend>
+                <div class="nombre-usuario">
+                    <label for="nombreUser">Nombre:</label>
+                    <input type="text" name="nombreUser" id="nombreUser" required>
+                </div>
+                <div class="selects">
+                    <label for="sexo">Sexo:</label>
+                    <select name="sexo" id="sexo">
+                        <option value="" disabled selected>...</option>
+                        <option value="M">M</option>
+                        <option value="F">F</option>
+                    </select>
+                    <label for="objetivo">Objetivo:</label>
+                    <select name="objetivo" id="objetivo">
+                        <option value="" disabled selected>Elige un objetivo...</option>
+                        <option value="Ganar Musculo">Ganar Músculo</option>
+                        <option value="Perder Peso">Perder Peso</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="edad">Edad:</label>
+                    <input type="number" name="edad" id="edad" required>
+                </div>
+                <div>
+                    <label for="altura">Altura (cm):</label>
+                    <input type="number" name="altura" id="altura" required>
+                </div>
+                <div>
+                    <label for="peso">Peso (kg):</label>
+                    <input type="number" name="peso" id="peso" required>
+                </div>
+
+                <button type="submit" value="comenzar" class="Comenzar">Comenzar</button>
+            </form>
+        </section>
+
+        <section class="bienvenida oculto">
             <h2>Bienvenido, <strong>Usuario</strong></h2>
             <p>Lorem ipsum dolor sit amet consectetur. Dui turpis hendrerit vulputate
                 fermentum vestibulum. Diam sed ornare porta aliquam turpis metus posuere feugiat. Non bibendum faucibus non
                 facilisi tincidunt libero habitasse. Tristique elementum enim scelerisque congue semper nibh cum.</p>
         </section>
 
-        <section class="objetivo">
+        <section class="objetivo oculto">
             <h2>Objetivo</h2>
             <h2 class="obj">GANAR MUSCULO</h2>
             <h2 class="kcal"><strong>3000</strong>kcal</h2>
             <h4 class="actividad">Moderadamente activo</h4>
         </section>
 
-        <section id="rutinas" class="rutinas">
+        <section id="rutinas" class="rutinas oculto">
             <h2>Rutinas cargadas</h2>
             <table id="rutinas-table">
                 <thead>
@@ -92,12 +131,12 @@
             </table>
         </section>
 
-        <section class="cargarRutina">
+        <section class="cargarRutina oculto">
             <h2>Cargar nueva rutina</h2>
             <form action="" id="formulario" class="form-rutina">
                 <div class="nombre-rutina">
-                    <label for="nombre">Nombre de Rutina:</label>
-                    <input type="text" name="nombre" id="nombreRutina" required>
+                    <label for="nombreRut">Nombre de Rutina:</label>
+                    <input type="text" name="nombreRut" id="nombreRut" required>
                 </div>
 
                 <div>
@@ -118,7 +157,7 @@
             </form>
         </section>
 
-        <section id="ejercicios" class="ejercicios">
+        <section id="ejercicios" class="ejercicios oculto">
             <h2>Ejercicios que puedes agregar</h2>
             <table id="ejercicios-table">
                 <thead>
@@ -149,49 +188,11 @@
             </table>
         </section>
 
-        <section class="inicio">
-            <img src="./assets/img/profit-logo.png" alt="Logo ProFit">
-            <form action="" id="form-incio" class="form-inicio">
-                <legend>Bienvenido a <strong>ProFit</strong>. Antes de comenzar, por favor ingrese los siguientes datos:</legend>
-                <div class="nombre-usuario">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" name="nombre" id="nombreRutina" required>
-                </div>
-                <div class="selects">
-                    <label for="sexo">Sexo:</label>
-                    <select name="sexo" id="sexo">
-                        <option value="" disabled selected>...</option>
-                        <option value="M">M</option>
-                        <option value="F">F</option>
-                    </select>
-                    <label for="objetivo">Objetivo:</label>
-                    <select name="objetivo" id="objetivo">
-                        <option value="" disabled selected>Elige un objetivo...</option>
-                        <option value="Ganar Musculo">Ganar Músculo</option>
-                        <option value="Perder Peso">Perder Peso</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="edad">Edad:</label>
-                    <input type="number" name="edad" id="edad" required>
-                </div>
-                <div>
-                    <label for="altura">Altura (cm):</label>
-                    <input type="number" name="altura" id="altura" required>
-                </div>
-                <div>
-                    <label for="peso">Peso (kg):</label>
-                    <input type="number" name="peso" id="peso" required>
-                </div>
-
-                <button type="submit" value="comenzar" class="Comenzar">Comenzar</button>
-            </form>
-        </section>
 
     </main>
     <footer>
 
     </footer>
-    <!-- <script src="main.js"></script> -->
+    <script src="main.js"></script>
 </body>
 </html>
