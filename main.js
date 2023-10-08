@@ -22,6 +22,29 @@ function Ejercicio(nombre, repeticiones, series, peso){
     this.peso = peso;
 }
 
+function desplegarSitio() {
+
+/*     const inicio = document.querySelector(".inicio");
+    inicio.classList.add("oculto"); */
+
+    const body = document.querySelector("body");
+    body.classList.add("grid");
+
+    const header = document.querySelector(".header");
+    header.classList.remove("oculto");
+
+    const main = document.querySelector("main");
+    main.classList.add("grid-main");
+
+    const logo = document.querySelector(".logo");
+    logo.classList.remove("oculto");
+
+    const secciones = document.querySelectorAll("section");
+    secciones.forEach( seccion => {
+        seccion.classList.contains("inicio") ? seccion.classList.add("oculto") : seccion.classList.remove("oculto");
+    })
+}
+
 const formularioInicio = document.querySelector('#form-inicio');
 
 function crearUsuario(evt){
@@ -39,6 +62,7 @@ function crearUsuario(evt){
     const usuarioRegistrado = new Usuario(nombreUsuario, edad, sexo, objetivo, altura, peso, rutinas);
     console.log(usuarioRegistrado);
 
+    desplegarSitio();
 }
 
 

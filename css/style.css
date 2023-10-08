@@ -110,6 +110,7 @@ main {
   grid-template-rows: 200px 360px 360px 360px 360px;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2.5rem 0rem;
+  background-image: none;
 }
 
 .logo {
