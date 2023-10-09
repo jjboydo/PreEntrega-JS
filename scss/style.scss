@@ -101,6 +101,19 @@ main {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  .mensaje {
+    font-size: 1.875rem;
+    font-family: $typo-titulos;
+    color: $color-text;
+    grid-row-start: 5;
+    grid-column-start: 1;
+    
+    grid-row-end: 6;
+    grid-column-end: 4;
+    display: flex;
+    justify-content: center;
+    align-self: start;
+  }
 }
 
 .grid-main {
@@ -216,11 +229,12 @@ main {
 }
 
 .rutinas {
+  opacity: 1;
   grid-row-start: 3;
   grid-column-start: 1;
   
   grid-row-end: 4;
-  grid-column-end: 4;
+  grid-column-end: 3;
   
   margin-left: 3.75rem;
   width: 91%;
@@ -228,6 +242,7 @@ main {
   background-color: $color-30;
   border-radius: 20px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  transition: opacity 1s ease-out;
   h2 {
     font-family: $typo-titulos;
     font-size: 32px;
@@ -311,6 +326,7 @@ main {
     div {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 1.875rem;
       input {
         padding-left: 1rem;
@@ -447,6 +463,83 @@ main {
   }
 }
 
+.ejercicios-rutina {
+  opacity: 1;
+  display: block;
+
+  grid-row-start: 3;
+  grid-column-start: 3;
+  
+  grid-row-end: 4;
+  grid-column-end: 4;
+  justify-self: end;
+  margin-right: 15%;
+  width: 350px;
+  height: 100%;
+  background-color: $color-10;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    font-family: $typo-titulos;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    color: $color-30;
+  }
+  table{
+    width: 90%;
+    margin: 0 5%;
+    text-align: center;
+    th, td {
+      padding: 0.5em;
+      font-family: $typo-titulos;
+      color: $color-30;
+    }
+  }
+}
+
+.ejercicios-cargar {
+  @extend .ejercicios-rutina;
+  grid-row-start: 5;
+  grid-row-end: 6;
+  gap: .625rem;
+  padding-top: 1.25rem;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  input {
+    width: 3.125rem;
+    border-radius: .75rem;
+    border: none;
+    height: 1.875rem;
+    color: $color-30;
+    font-family: $typo-titulos;
+    text-align: center;
+  }
+  .btn {
+    border-radius: .75rem;
+    background-color: $color-30;
+    color: $color-60;
+    font-family: $typo-titulos;
+    width: 12.5rem;
+    height: 3.125rem;
+    margin: .625rem 0;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    border: none;
+  }
+}
+
 .oculto {
   display: none;
+}
+
+.oct-anim {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  position: absolute;
 }

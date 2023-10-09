@@ -52,9 +52,13 @@ function actualizarHTML() {
     section.querySelector(".obj").textContent = usuarioRegistrado.objetivo.toUpperCase();
     usuarioRegistrado.objetivo === "Ganar Musculo" ? section.querySelector(".kcal strong").textContent = Math.round(calcularCaloriasMantenimiento()) + 300 : section.querySelector(".kcal strong").textContent = Math.round(calcularCaloriasMantenimiento()) - 300;
     section.querySelector(".actividad").textContent = calcularFactorActividad(calcularTiempoTotal()).nombre;
+
 }
 
 const formularioInicio = document.querySelector('#form-inicio');
+const formularioCargaRutina = document.querySelector('#form-rutina');
+const seleccionEjercicios = document.querySelector("#ejercicios");
+const botonesEjercicio = document.querySelectorAll("#ejercicios button");
 let usuarioRegistrado;
 
 function crearUsuario(evt){
@@ -134,35 +138,87 @@ function validarNumero(mensaje) {
     return entrada;
 }
 
+function mostrarExito(msg){
+    const mensajeExito = document.createElement('p');
+    mensajeExito.textContent = msg;
+    mensajeExito.classList.add('mensaje')
+    const modal = document.querySelector('main');
+    modal.appendChild(mensajeExito);
 
-// Cargar nuevo ejercicio
+    setTimeout(()=>{
+        mensajeExito.remove()
+    },3000)
+}
 
-function cargarEjercicio(){
-    let nombre = prompt("Ingresa el nombre del ejercicio a incluir en la rutina");
-    let series = validarNumero("Ingrese cantidad de series");
-    let repeticiones = validarNumero("Ingrese cantidad de repeticiones");
-    let peso = validarNumero("Ingrese el peso con el que realizó el ejercicio");
-    return new Ejercicio(nombre,repeticiones,series,peso);
+
+// Cargar ejercicios de la rutina
+
+function cargarEjercicios(ejercicios){
+
+    const ejerciciosCargados = document.querySelector("#ejercicios-cargar");
+    ejerciciosCargados.classList.remove("oct-anim");
+
+    botonesEjercicio.forEach( boton => {
+        boton.addEventListener('click', () => {
+            const fila = boton.parentNode.parentNode;
+            const nombreEjercicio = fila.firstElementChild.textContent;
+            const filaNueva = document.createElement("tr");
+            filaNueva.innerHTML = `
+                <td>${nombreEjercicio}</td>
+                <td><input type="number" name="serie" id="serie" min="1"></td>
+                <td><input type="number" name="rep" id="rep" min="1"></td>
+                <td><input type="number" name="peso" id="peso" min="1"></td>
+            `;
+
+            document.querySelector("#ejercicios-cargar-table tbody").appendChild(filaNueva);
+            document.querySelector(".btn").classList.remove("oculto");
+        });
+    });
+
+    const guardarRutina = ejerciciosCargados.querySelector(".btn");
+    guardarRutina.addEventListener('click', () => {
+        const ejerciciosListos = ejerciciosCargados.querySelectorAll("tbody tr");
+        ejerciciosListos.forEach( ejercicio => {
+            const hijos = ejercicio.children;
+            
+            let nombre = hijos[0].textContent;
+            let series = hijos[1].firstElementChild.value;
+            let repeticiones = hijos[2].firstElementChild.value;
+            let peso = hijos[3].firstElementChild.value;
+            
+            ejercicios.push(new Ejercicio(nombre,repeticiones,series,peso));
+        })
+        ejerciciosCargados.classList.add("oct-anim");
+        document.querySelector("#ejercicios").classList.add("oct-anim");
+        mostrarExito("Rutina cargada correctamente");
+    });
+
+
 }
 
 // Crear nueva rutina
 
-function crearRutina(){
-    let nombreRutina = prompt("Ingresa un nombre para la nueva rutina");
-    while (usuario.rutinas.some((rut) => rut.nombre === nombreRutina)) {
+function crearRutina(evt){
+
+    evt.preventDefault();
+
+    let nombreRutina = formularioCargaRutina.querySelector("#nombreRut").value;
+    /* while (usuarioRegistrado.rutinas.some((rut) => rut.nombre === nombreRutina)) {
         alert("Ya existe una rutina con ese nombre. Por favor ingrese otro nombre");
         nombreRutina = prompt("Ingresa un nombre para la nueva rutina");
-    }
-    let duracion = validarNumero("¿Cuántos minutos dedicarás a: " + nombreRutina + "?");
-    let frecuencia = validarNumero("¿Cuántos días a la semana harás " + nombreRutina + "?");
-    let seguirCargando;
+    } */
+    let duracion = formularioCargaRutina.querySelector("#duracion").value;
+    let frecuencia = formularioCargaRutina.querySelector("#dias").value;
     let ejercicios = [];
-    do {
-        ejercicios.push(cargarEjercicio());
-        seguirCargando = confirm("Desea seguir cargando ejercicios?");
-    } while (seguirCargando);
+
+    
+    const listaEjercicios = document.querySelector("#ejercicios");
+    listaEjercicios.classList.remove("oct-anim");
+
+    cargarEjercicios(ejercicios);
+    
     let rutina = new Rutina(nombreRutina,duracion,frecuencia,ejercicios);
-    usuario.rutinas.push(rutina);
+    usuarioRegistrado.rutinas.push(rutina);
 }
 
 // Mostrar las rutinas del usuario
@@ -203,9 +259,8 @@ function agregarEjericio() {
     }
 }
 
-// Creacion de un usuario
-
 formularioInicio.addEventListener('submit', crearUsuario);
+formularioCargaRutina.addEventListener('submit', crearRutina);
 
 // Menú
 

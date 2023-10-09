@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Fitness y Salud</title>
+    <title>ProFit</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body class="">
@@ -96,30 +96,7 @@
                         <td>Rutina 1</td>
                         <td>30 minutos</td>
                         <td>3</td>
-                        <td><button>+</button></td>
-                    </tr>
-                    <tr class="ejercicios" id="rutina1">
-                        <td colspan="4">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Ejercicio</th>
-                                        <th>Repeticiones</th>
-                                        <th>Series</th>
-                                        <!-- Puedes agregar más encabezados si es necesario -->
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Cada ejercicio será una fila en la subtabla -->
-                                    <tr>
-                                        <td>Ejercicio 1</td>
-                                        <td>10</td>
-                                        <td>3</td>
-                                    </tr>
-                                    <!-- Puedes agregar más ejercicios aquí -->
-                                </tbody>
-                            </table>
-                        </td>
+                        <td><button type="submit">+</button></td>
                     </tr>
                     <tr>
                         <td>Rutina 2</td>
@@ -131,9 +108,29 @@
             </table>
         </section>
 
+        <section class="ejercicios-rutina oct-anim">
+            <h2>Rutina</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ejercicio</th>
+                        <th>Repeticiones</th>
+                        <th>Series</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ejercicio 1</td>
+                        <td>10</td>
+                        <td>3</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
         <section class="cargarRutina oculto">
             <h2>Cargar nueva rutina</h2>
-            <form action="" id="formulario" class="form-rutina">
+            <form action="" id="form-rutina" class="form-rutina">
                 <div class="nombre-rutina">
                     <label for="nombreRut">Nombre de Rutina:</label>
                     <input type="text" name="nombreRut" id="nombreRut" required>
@@ -141,12 +138,12 @@
 
                 <div>
                     <label for="duracion">Duración (min):</label>
-                    <input type="number" name="duracion" id="duracion" required>
+                    <input type="number" name="duracion" id="duracion" min="10" required>
                 </div>
 
                 <div>
                     <label for="dias">Días a la semana:</label>
-                    <input type="number" name="dias" id="dias" required>
+                    <input type="number" name="dias" id="dias" min="1" max="7" required>
                 </div>
 
 
@@ -157,35 +154,47 @@
             </form>
         </section>
 
-        <section id="ejercicios" class="ejercicios oculto">
+        <section id="ejercicios" class="ejercicios oct-anim">
             <h2>Ejercicios que puedes agregar</h2>
             <table id="ejercicios-table">
                 <thead>
                     <tr>
                         <th>Ejercicio</th>
-                        <th>Series</th>
-                        <th>Repeticiones</th>
-                        <th>Peso</th>
+                        <th>Grupo muscular</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Press Banca</td>
-                        <td>3</td>
-                        <td>5</td>
-                        <td>50 kg</td>
+                        <td>Pecho</td>
                         <td><button>+</button></td>
                     </tr>
                     <tr>
                         <td>Sentadilla</td>
-                        <td>3</td>
-                        <td>3</td>
-                        <td>100 kg</td>
+                        <td>Pierna</td>
                         <td><button>+</button></td>
                     </tr>
                 </tbody>
             </table>
+        </section>
+
+        <section id="ejercicios-cargar" class="ejercicios-cargar oct-anim">
+            <h2>Ejercicios a cargar</h2>
+            <table id="ejercicios-cargar-table">
+                <thead>
+                    <tr>
+                        <th>Ejercicio</th>
+                        <th>Series</th>
+                        <th>Reps</th>
+                        <th>Peso</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <button class="btn oculto" type="submit">Guardar Rutina</button>
         </section>
 
 

@@ -95,6 +95,18 @@ main {
   align-items: center;
   height: 100vh;
 }
+main .mensaje {
+  font-size: 1.875rem;
+  font-family: "MuseoModerno", cursive;
+  color: #051408;
+  grid-row-start: 5;
+  grid-column-start: 1;
+  grid-row-end: 6;
+  grid-column-end: 4;
+  display: flex;
+  justify-content: center;
+  align-self: start;
+}
 
 .grid-main {
   grid-row-start: 1;
@@ -206,16 +218,18 @@ main {
 }
 
 .rutinas, .ejercicios {
+  opacity: 1;
   grid-row-start: 3;
   grid-column-start: 1;
   grid-row-end: 4;
-  grid-column-end: 4;
+  grid-column-end: 3;
   margin-left: 3.75rem;
   width: 91%;
   height: 100%;
   background-color: #13441D;
   border-radius: 20px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  transition: opacity 1s ease-out;
 }
 .rutinas h2, .ejercicios h2 {
   font-family: "MuseoModerno", cursive;
@@ -293,6 +307,7 @@ main {
 .cargarRutina .form-rutina div {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1.875rem;
 }
 .cargarRutina .form-rutina div input {
@@ -425,8 +440,82 @@ main {
   cursor: pointer;
 }
 
+.ejercicios-rutina, .ejercicios-cargar {
+  opacity: 1;
+  display: block;
+  grid-row-start: 3;
+  grid-column-start: 3;
+  grid-row-end: 4;
+  grid-column-end: 4;
+  justify-self: end;
+  margin-right: 15%;
+  width: 350px;
+  height: 100%;
+  background-color: #4BCE65;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ejercicios-rutina h2, .ejercicios-cargar h2 {
+  font-family: "MuseoModerno", cursive;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: #13441D;
+}
+.ejercicios-rutina table, .ejercicios-cargar table {
+  width: 90%;
+  margin: 0 5%;
+  text-align: center;
+}
+.ejercicios-rutina table th, .ejercicios-cargar table th, .ejercicios-rutina table td, .ejercicios-cargar table td {
+  padding: 0.5em;
+  font-family: "MuseoModerno", cursive;
+  color: #13441D;
+}
+
+.ejercicios-cargar {
+  grid-row-start: 5;
+  grid-row-end: 6;
+  gap: 0.625rem;
+  padding-top: 1.25rem;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.ejercicios-cargar input {
+  width: 3.125rem;
+  border-radius: 0.75rem;
+  border: none;
+  height: 1.875rem;
+  color: #13441D;
+  font-family: "MuseoModerno", cursive;
+  text-align: center;
+}
+.ejercicios-cargar .btn {
+  border-radius: 0.75rem;
+  background-color: #13441D;
+  color: #EBFAEE;
+  font-family: "MuseoModerno", cursive;
+  width: 12.5rem;
+  height: 3.125rem;
+  margin: 0.625rem 0;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  border: none;
+}
+
 .oculto {
   display: none;
+}
+
+.oct-anim {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  position: absolute;
 }
 
 /*# sourceMappingURL=style.css.map */
