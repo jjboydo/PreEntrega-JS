@@ -60,7 +60,6 @@ const formularioCargaRutina = document.querySelector('#form-rutina');
 const seleccionEjercicios = document.querySelector("#ejercicios");
 const botonesEjercicio = document.querySelectorAll("#ejercicios button");
 const rutinasCargadas = document.querySelector("#rutinas");
-const botonesRutinas = document.querySelectorAll("#rutinas button");
 const ejerciciosCargados = document.querySelector("#ejercicios-cargar");
 let usuarioRegistrado;
 
@@ -246,6 +245,13 @@ function resetRutinas() {
     }
 }
 
+function resetDetalleRutina() {
+    const filas = document.querySelector(".ejercicios-rutina tbody");
+    while(filas.firstChild){
+        filas.removeChild(filas.firstChild);
+    }
+}
+
 // Crear nueva rutina
 
 function crearRutina(evt){
@@ -286,42 +292,39 @@ function mostrarRutinas() {
         `;
         document.querySelector("#rutinas tbody").appendChild(filaNueva);
     });
+    mostrarDetalleRutina();
+}
+
+function mostrarFila(evt) {
+    document.querySelector(".ejercicios-rutina").classList.remove("oct-anim");
+    const boton = evt.target;
+    boton.classList.add("oculto");
+    const fila = boton.parentNode.parentNode;
+    const nombreRutina = fila.firstElementChild.textContent;
+    console.log("nombreRutina: " + nombreRutina);
+    const rutina = usuarioRegistrado.rutinas.find((rut) => rut.nombre === nombreRutina);
+    console.log(rutina);
+    rutina.ejercicios.forEach(ejercicio => {
+        const filaNueva = document.createElement("tr");
+        filaNueva.innerHTML = `
+            <td>${ejercicio.nombre}</td>
+            <td>${ejercicio.series}</td>
+            <td>${ejercicio.repeticiones}</td>
+            <td>${ejercicio.peso}</td>
+        `;
+        document.querySelector("#ejercicios-rutina-table tbody").appendChild(filaNueva);
+    });
+
+    boton.removeEventListener('click', mostrarFila);
 }
 
 function mostrarDetalleRutina() {
-
-    rutinasCargadas.classList.remove("oct-anim");
-
+    resetDetalleRutina();
+    const botonesRutinas = document.querySelectorAll("#rutinas button");
     botonesRutinas.forEach( boton => {
-        boton.addEventListener('click', () => {
-            boton.classList.add("oculto");
-            const fila = boton.parentNode.parentNode;
-            const nombreEjercicio = fila.firstElementChild.textContent;
-            const filaNueva = document.createElement("tr");
-            filaNueva.innerHTML = `
-                <td>${nombreEjercicio}</td>
-                <td><input type="number" name="serie" id="serie" min="1"></td>
-                <td><input type="number" name="rep" id="rep" min="1"></td>
-                <td><input type="number" name="peso" id="peso" min="1"></td>
-            `;
-
-            document.querySelector("#ejercicios-cargar-table tbody").appendChild(filaNueva);
-            document.querySelector(".btn").classList.remove("oculto");
-        });
+        console.log(boton);
+        boton.addEventListener('click', mostrarFila);
     });
-/*     if(usuario.rutinas.length != 0){
-        let mensaje = "Rutinas del usuario:\n";
-        for (const rutina of usuario.rutinas) {
-            mensaje += "-------------------\n";
-            mensaje += "Rutina: " + rutina.nombre + "\n";
-            for (const ejercicio of rutina.ejercicios) {
-                mensaje += `${ejercicio.nombre} --> ${ejercicio.series} series de ${ejercicio.repeticiones} repeticiones con ${ejercicio.peso} kg\n`;
-            }
-        }
-        alert(mensaje);
-    } else {
-        alert("No hay rutinas cargadas");
-    } */
 }
 
 // Mostrar resumen
@@ -346,6 +349,7 @@ function agregarEjericio() {
 
 formularioInicio.addEventListener('submit', crearUsuario);
 formularioCargaRutina.addEventListener('submit', crearRutina);
+
 
 // Menú
 
