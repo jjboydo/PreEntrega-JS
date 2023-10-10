@@ -351,8 +351,8 @@ main .mensaje {
 }
 
 .ejercicios {
-  grid-row-start: 5;
-  grid-row-end: 6;
+  grid-row-start: 4;
+  grid-row-end: 5;
 }
 
 .inicio {
@@ -449,7 +449,7 @@ main .mensaje {
   grid-column-end: 4;
   justify-self: end;
   margin-right: 15%;
-  width: 350px;
+  width: 80%;
   height: 100%;
   background-color: #4BCE65;
   border-radius: 20px;
@@ -478,8 +478,8 @@ main .mensaje {
 }
 
 .ejercicios-cargar {
-  grid-row-start: 5;
-  grid-row-end: 6;
+  grid-row-start: 4;
+  grid-row-end: 5;
   gap: 0.625rem;
   padding-top: 1.25rem;
   overflow-x: hidden;
@@ -516,6 +516,7 @@ main .mensaje {
   height: 0;
   overflow: hidden;
   position: absolute;
+  transition: opacity 1s ease-out;
 }
 
 /*# sourceMappingURL=style.css.map */

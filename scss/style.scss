@@ -373,8 +373,8 @@ main {
 
 .ejercicios {
   @extend .rutinas;
-  grid-row-start: 5;
-  grid-row-end: 6;
+  grid-row-start: 4;
+  grid-row-end: 5;
 }
 
 .inicio {
@@ -474,7 +474,7 @@ main {
   grid-column-end: 4;
   justify-self: end;
   margin-right: 15%;
-  width: 350px;
+  width: 80%;
   height: 100%;
   background-color: $color-10;
   border-radius: 20px;
@@ -504,8 +504,8 @@ main {
 
 .ejercicios-cargar {
   @extend .ejercicios-rutina;
-  grid-row-start: 5;
-  grid-row-end: 6;
+  grid-row-start: 4;
+  grid-row-end: 5;
   gap: .625rem;
   padding-top: 1.25rem;
   overflow-x: hidden;
@@ -542,4 +542,5 @@ main {
   height: 0;
   overflow: hidden;
   position: absolute;
+  transition: opacity 1s ease-out;
 }
