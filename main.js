@@ -22,34 +22,35 @@ function Ejercicio(nombre, repeticiones, series, peso){
     this.peso = peso;
 }
 
+
 function desplegarSitio() {
 
     const body = document.querySelector("body");
     body.classList.add("grid");
-
+    
     const header = document.querySelector(".header");
     header.classList.remove("oculto");
-
+    
     const main = document.querySelector("main");
     main.classList.add("grid-main");
-
+    
     const logo = document.querySelector(".logo");
     logo.classList.remove("oculto");
-
+    
     const secciones = document.querySelectorAll("section");
     secciones.forEach( seccion => {
         seccion.classList.contains("inicio") ? seccion.classList.add("oculto") : seccion.classList.remove("oculto");
     })
-
+    
     header.querySelector(".datosUsuario h2").textContent = usuarioRegistrado.nombre;
-
+    
     document.querySelector(".bienvenida h2 strong").textContent = usuarioRegistrado.nombre;
-
+    
 }
 
 function actualizarHTML() {
     const section = document.querySelector(".objetivo");
-
+    
     section.querySelector(".obj").textContent = usuarioRegistrado.objetivo.toUpperCase();
     usuarioRegistrado.objetivo === "Ganar Musculo" ? section.querySelector(".kcal strong").textContent = Math.round(calcularCaloriasMantenimiento()) + 300 : section.querySelector(".kcal strong").textContent = Math.round(calcularCaloriasMantenimiento()) - 300;
     section.querySelector(".actividad").textContent = calcularFactorActividad(calcularTiempoTotal()).nombre;
@@ -143,10 +144,27 @@ const rutinasCargadas = document.querySelector("#rutinas");
 const ejerciciosCargados = document.querySelector("#ejercicios-cargar");
 let usuarioRegistrado;
 
+window.addEventListener('DOMContentLoaded', ()=>{
+    let usuarioStorage = JSON.parse(localStorage.getItem('usuarioRegistrado')) || [];
+    if (usuarioStorage.length != 0){
+        usuarioRegistrado = usuarioStorage;
+        desplegarSitio();
+        actualizarHTML();
+    }
+})
+
+function sincronizarStorage(){
+    localStorage.setItem('usuarioRegistrado', JSON.stringify(usuarioRegistrado));
+}
+
+function limpiarStorage(){
+    localStorage.clear(); 
+}
+
 function crearUsuario(evt){
 
     evt.preventDefault();
-
+    
     let nombreUsuario = formularioInicio.querySelector("#nombreUser").value;
     let edad = formularioInicio.querySelector("#edad").value;
     let sexo = formularioInicio.querySelector("#sexo").value;
@@ -158,6 +176,7 @@ function crearUsuario(evt){
     usuarioRegistrado = new Usuario(nombreUsuario, edad, sexo, objetivo, altura, peso, rutinas);
     console.log(usuarioRegistrado);
 
+    sincronizarStorage();
     desplegarSitio();
     actualizarHTML();
 }
@@ -311,6 +330,7 @@ function cargarEjercicios(ejercicios){
         resetBtn();
         resetEjercicios();
         mostrarExito("Rutina cargada correctamente");
+        sincronizarStorage();
         
         guardarRutina.removeEventListener('click', guardarRutinaClick);
     }
@@ -432,3 +452,4 @@ formularioCargaRutina.addEventListener('submit', crearRutina);
 document.querySelectorAll(".unstyled li").forEach(li => {
     li.addEventListener('click', liActivo);
 });
+document.querySelector(".borrar").addEventListener('click', limpiarStorage);
