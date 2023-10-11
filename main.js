@@ -44,6 +44,7 @@ function desplegarSitio() {
     header.querySelector(".datosUsuario h2").textContent = usuarioRegistrado.nombre;
 
     document.querySelector(".bienvenida h2 strong").textContent = usuarioRegistrado.nombre;
+
 }
 
 function actualizarHTML() {
@@ -55,6 +56,89 @@ function actualizarHTML() {
     mostrarRutinas();
 }
 
+const ejerciciosPreCargados = [
+    {
+        "nombre": "Press de banca",
+        "musculo": "Pectorales"
+    },
+    {
+        "nombre": "Sentadillas",
+        "musculo": "Piernas"
+    },
+    {
+        "nombre": "Dominadas",
+        "musculo": "Espalda"
+    },
+    {
+        "nombre": "Fondos en paralelas",
+        "musculo": "Tríceps"
+    },
+    {
+        "nombre": "Curl de bíceps",
+        "musculo": "Bíceps"
+    },
+    {
+        "nombre": "Peso muerto",
+        "musculo": "Espalda baja"
+    },
+    {
+        "nombre": "Flexiones",
+        "musculo": "Pectorales"
+    },
+    {
+        "nombre": "Zancadas",
+        "musculo": "Piernas"
+    },
+    {
+        "nombre": "Remo con barra",
+        "musculo": "Espalda"
+    },
+    {
+        "nombre": "Press militar",
+        "musculo": "Hombros"
+    },
+    {
+        "nombre": "Plancha abdominal",
+        "musculo": "Abdominales"
+    },
+    {
+        "nombre": "Elevaciones laterales",
+        "musculo": "Hombros"
+    },
+    {
+        "nombre": "Fondos en máquina",
+        "musculo": "Tríceps"
+    },
+    {
+        "nombre": "Curl martillo",
+        "musculo": "Bíceps"
+    },
+    {
+        "nombre": "Prensa de piernas",
+        "musculo": "Piernas"
+    },
+    {
+        "nombre": "Pull-ups",
+        "musculo": "Espalda"
+    },
+    {
+        "nombre": "Crunches",
+        "musculo": "Abdominales"
+    },
+    {
+        "nombre": "Hip Thrust",
+        "musculo": "Glúteos"
+    },
+    {
+        "nombre": "Extensiones de tríceps",
+        "musculo": "Tríceps"
+    },
+    {
+        "nombre": "Curl concentrado",
+        "musculo": "Bíceps"
+    }
+];
+listarEjercicios();
 const formularioInicio = document.querySelector('#form-inicio');
 const formularioCargaRutina = document.querySelector('#form-rutina');
 const seleccionEjercicios = document.querySelector("#ejercicios");
@@ -81,7 +165,6 @@ function crearUsuario(evt){
     desplegarSitio();
     actualizarHTML();
 }
-
 
 // Función para calcular el tiempo total de ejercicio
 
@@ -152,22 +235,6 @@ function mostrarExito(msg){
     },3000)
 }
 
-function insertarFila() {
-    boton.classList.add("oculto");
-    const fila = boton.parentNode.parentNode;
-    const nombreEjercicio = fila.firstElementChild.textContent;
-    const filaNueva = document.createElement("tr");
-    filaNueva.innerHTML = `
-    <td>${nombreEjercicio}</td>
-    <td><input type="number" name="serie" id="serie" min="1"></td>
-    <td><input type="number" name="rep" id="rep" min="1"></td>
-    <td><input type="number" name="peso" id="peso" min="1"></td>
-    `;
-    
-    document.querySelector("#ejercicios-cargar-table tbody").appendChild(filaNueva);
-    document.querySelector(".btn").classList.remove("oculto");
-}
-
 function insertarFila(evt) {
     const boton = evt.target;
     boton.classList.add("oculto");
@@ -187,11 +254,26 @@ function insertarFila(evt) {
     boton.removeEventListener('click', insertarFila);
 }
 
+// Listar los ejercicios para agregar
+
+function listarEjercicios(){
+    ejerciciosPreCargados.forEach(ejercicio => {
+        const filaNueva = document.createElement("tr");
+        filaNueva.innerHTML = `
+        <td>${ejercicio.nombre}</td>
+        <td>${ejercicio.musculo}</td>
+        <td><button>+</button></td>
+        `;
+        document.querySelector("#ejercicios-table tbody").appendChild(filaNueva);
+    });
+}
+
 // Cargar ejercicios de la rutina
 
 function cargarEjercicios(ejercicios){
     
     ejerciciosCargados.classList.remove("oct-anim");
+    console.log(botonesEjercicio);
     botonesEjercicio.forEach( boton => {
         boton.addEventListener('click', insertarFila);
     });

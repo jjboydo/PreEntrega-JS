@@ -115,7 +115,7 @@ main .mensaje {
   grid-column-end: 3;
   height: 100%;
   display: grid;
-  grid-template-rows: 200px 360px 360px 360px 360px;
+  grid-template-rows: 200px 360px 360px 600px 360px;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2.5rem 0rem;
   background-image: none;
@@ -174,7 +174,7 @@ main .mensaje {
   grid-column-end: 4;
   justify-self: end;
   margin-right: 15%;
-  width: 350px;
+  width: 80%;
   height: 100%;
   background-color: #4BCE65;
   border-radius: 20px;
@@ -228,6 +228,8 @@ main .mensaje {
   height: 100%;
   background-color: #13441D;
   border-radius: 20px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   transition: opacity 0.4s ease-out;
 }
@@ -258,6 +260,17 @@ main .mensaje {
   color: #EBFAEE;
   font-weight: bold;
 }
+.rutinas table tbody tr button, .ejercicios table tbody tr button {
+  border-radius: 0.75rem;
+  border: none;
+  font-family: "MuseoModerno", cursive;
+  width: 1.25rem;
+  background-color: #EBFAEE;
+  color: #13441D;
+  cursor: pointer;
+  font-weight: bolder;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
 .rutinas table tr:hover td, .ejercicios table tr:hover td {
   background-color: #4BCE65;
   transition-delay: 0s, 0s;
@@ -287,6 +300,8 @@ main .mensaje {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   width: 100%;
   padding: 0.9375rem;
+  align-self: self-start;
+  margin-top: 1.875rem;
   transition: opacity 0.3s, height 0.3s ease-out;
 }
 .cargarRutina h2 {
@@ -354,6 +369,8 @@ main .mensaje {
 .ejercicios {
   grid-row-start: 4;
   grid-row-end: 5;
+  height: 37.5rem;
+  margin-top: 6.25rem;
 }
 
 .inicio {
@@ -458,6 +475,8 @@ main .mensaje {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: auto;
+  overflow-x: 0;
   transition: opacity 0.4s ease-out;
 }
 .ejercicios-rutina h2, .ejercicios-cargar h2 {
@@ -486,6 +505,7 @@ main .mensaje {
   padding-top: 1.25rem;
   overflow-x: hidden;
   overflow-y: scroll;
+  margin-top: 6.25rem;
 }
 .ejercicios-cargar input {
   width: 3.125rem;
@@ -515,6 +535,7 @@ main .mensaje {
 
 .oct-anim {
   opacity: 0;
+  display: none;
 }
 
 /*# sourceMappingURL=style.css.map */
