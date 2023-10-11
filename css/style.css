@@ -229,7 +229,7 @@ main .mensaje {
   background-color: #13441D;
   border-radius: 20px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  transition: opacity 1s ease-out;
+  transition: opacity 0.4s ease-out;
 }
 .rutinas h2, .ejercicios h2 {
   font-family: "MuseoModerno", cursive;
@@ -251,7 +251,7 @@ main .mensaje {
 .rutinas table tbody td, .ejercicios table tbody td {
   background-color: rgba(255, 255, 255, 0);
   transition: all 0.2s linear;
-  transition-delay: 0.1s, 0s;
+  transition-delay: 0.01s, 0s;
   opacity: 0.6;
   font-family: "Poppins", sans-serif;
   font-size: 16px;
@@ -267,7 +267,7 @@ main .mensaje {
 .rutinas table td, .ejercicios table td {
   transform-origin: center left;
   transition-property: transform;
-  transition-duration: 0.1s;
+  transition-duration: 0.01s;
   transition-timing-function: ease-in-out;
 }
 .rutinas table tr:hover td, .ejercicios table tr:hover td {
@@ -287,6 +287,7 @@ main .mensaje {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   width: 100%;
   padding: 0.9375rem;
+  transition: opacity 0.3s, height 0.3s ease-out;
 }
 .cargarRutina h2 {
   font-size: 32px;
@@ -457,6 +458,7 @@ main .mensaje {
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: opacity 0.4s ease-out;
 }
 .ejercicios-rutina h2, .ejercicios-cargar h2 {
   font-family: "MuseoModerno", cursive;
@@ -513,10 +515,6 @@ main .mensaje {
 
 .oct-anim {
   opacity: 0;
-  height: 0;
-  overflow: hidden;
-  position: absolute;
-  transition: opacity 1s ease-out;
 }
 
 /*# sourceMappingURL=style.css.map */

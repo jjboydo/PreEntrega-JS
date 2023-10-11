@@ -250,6 +250,7 @@ function resetDetalleRutina() {
     while(filas.firstChild){
         filas.removeChild(filas.firstChild);
     }
+    document.querySelector(".ejercicios-rutina").classList.add("oct-anim");
 }
 
 // Crear nueva rutina
@@ -296,33 +297,35 @@ function mostrarRutinas() {
 }
 
 function mostrarFila(evt) {
-    document.querySelector(".ejercicios-rutina").classList.remove("oct-anim");
     const boton = evt.target;
-    boton.classList.add("oculto");
+    resetDetalleRutina();
+    document.querySelector(".ejercicios-rutina").classList.remove("oct-anim");
     const fila = boton.parentNode.parentNode;
     const nombreRutina = fila.firstElementChild.textContent;
-    console.log("nombreRutina: " + nombreRutina);
+    document.querySelector(".ejercicios-rutina h2").textContent = `${nombreRutina}:`;
     const rutina = usuarioRegistrado.rutinas.find((rut) => rut.nombre === nombreRutina);
-    console.log(rutina);
     rutina.ejercicios.forEach(ejercicio => {
         const filaNueva = document.createElement("tr");
         filaNueva.innerHTML = `
-            <td>${ejercicio.nombre}</td>
-            <td>${ejercicio.series}</td>
-            <td>${ejercicio.repeticiones}</td>
-            <td>${ejercicio.peso}</td>
+        <td>${ejercicio.nombre}</td>
+        <td>${ejercicio.series}</td>
+        <td>${ejercicio.repeticiones}</td>
+        <td>${ejercicio.peso}</td>
         `;
         document.querySelector("#ejercicios-rutina-table tbody").appendChild(filaNueva);
     });
 
-    boton.removeEventListener('click', mostrarFila);
+    setTimeout(()=>{
+        document.querySelector(".ejercicios-rutina").classList.add("oct-anim");
+    },10000)
+    
+    actualizarHTML();
+    /* boton.removeEventListener('click', mostrarFila); */
 }
 
 function mostrarDetalleRutina() {
-    resetDetalleRutina();
     const botonesRutinas = document.querySelectorAll("#rutinas button");
     botonesRutinas.forEach( boton => {
-        console.log(boton);
         boton.addEventListener('click', mostrarFila);
     });
 }
@@ -349,39 +352,3 @@ function agregarEjericio() {
 
 formularioInicio.addEventListener('submit', crearUsuario);
 formularioCargaRutina.addEventListener('submit', crearRutina);
-
-
-// Menú
-
-/* while(opcion){
-    opcion = Number(prompt(`ProFit! Seleccione una ópcion:
-    1- Mostrar resumen del usuario
-    2- Mostrar calorias a consumir
-    3- Cargar nueva rutina
-    4- Mostrar rutinas
-    5- Agregar un ejercicio a rutina
-    `));
-    switch (opcion) {
-        case 1:
-            mostrarResumen();
-            break;
-        case 2:
-            mostrarCalorias();
-            break;
-        case 3:
-            crearRutina();
-            break;
-        case 4:
-            mostrarRutinas();
-            break;
-        case 5:
-            agregarEjericio();
-            break;
-        case 0:
-            break;
-        default:
-            alert("Opcion no válida")
-            break;
-    }
-} */
-
