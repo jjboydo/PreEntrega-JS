@@ -118,10 +118,6 @@ const ejerciciosPreCargados = [
         "musculo": "Piernas"
     },
     {
-        "nombre": "Pull-ups",
-        "musculo": "Espalda"
-    },
-    {
         "nombre": "Crunches",
         "musculo": "Abdominales"
     },
@@ -232,7 +228,25 @@ function mostrarExito(msg){
 
     setTimeout(()=>{
         mensajeExito.remove()
-    },3000)
+        scrollA("#logo");
+        document.querySelector(".unstyled .activo").classList.remove("activo");
+        document.querySelector(".unstyled").firstElementChild.classList.add("activo");
+    },2000)
+}
+
+function scrollA(contenedor){
+    document.querySelector(contenedor).scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+}
+
+function liActivo(evt){
+
+    const a = evt.target;
+    const lis = document.querySelectorAll(".unstyled li");
+
+    lis.forEach(li => {
+        li.classList.remove("activo");
+    });
+    a.parentNode.classList.add("activo");
 }
 
 function insertarFila(evt) {
@@ -342,10 +356,11 @@ function crearRutina(evt){
     evt.preventDefault();
 
     let nombreRutina = formularioCargaRutina.querySelector("#nombreRut").value;
-    /* while (usuarioRegistrado.rutinas.some((rut) => rut.nombre === nombreRutina)) {
-        alert("Ya existe una rutina con ese nombre. Por favor ingrese otro nombre");
-        nombreRutina = prompt("Ingresa un nombre para la nueva rutina");
-    } */
+    if(usuarioRegistrado.rutinas.some((rut) => rut.nombre === nombreRutina)){
+        mostrarExito("El nombre de la rutina ya existe");
+        formularioCargaRutina.reset();
+        return;
+    }
     let duracion = formularioCargaRutina.querySelector("#duracion").value;
     let frecuencia = formularioCargaRutina.querySelector("#dias").value;
     let ejercicios = [];
@@ -412,25 +427,8 @@ function mostrarDetalleRutina() {
     });
 }
 
-// Mostrar resumen
-
-function mostrarResumen (){
-    alert("Resumen de " + usuario.nombre);
-    alert("Objetivo de Fitness: " + usuario.objetivo);
-    alert("Total de minutos de ejercicio por semana: " + calcularTiempoTotal());
-}
-
-// Modificar un ejercicio
-
-function agregarEjericio() {
-    let nombre = prompt("Ingresa el nombre de la rutina a la que desea agregar un ejercicio");
-    let rutinaElegida = usuario.rutinas.findIndex((rut) => rut.nombre === nombre);
-    if (rutinaElegida != -1) {
-        usuario.rutinas[rutinaElegida].ejercicios.push(cargarEjercicio());
-    } else {
-        alert("Rutina no existente.");
-    }
-}
-
 formularioInicio.addEventListener('submit', crearUsuario);
 formularioCargaRutina.addEventListener('submit', crearRutina);
+document.querySelectorAll(".unstyled li").forEach(li => {
+    li.addEventListener('click', liActivo);
+});

@@ -69,10 +69,13 @@
   display: flex;
   justify-content: end;
   padding-right: 1.875rem;
-  transition: 2.15s linear color;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: 1.5rem 0 0 1.5rem;
 }
 .navbar li:hover {
   background-color: #4BCE65;
+  transform: scale(1.05);
+  transform: translateZ(50px);
 }
 .navbar a {
   padding: 1.1em 0;
@@ -82,6 +85,14 @@
 }
 .navbar a:hover {
   color: #fff;
+}
+
+.activo {
+  background-color: #4BCE65;
+}
+
+body {
+  overflow: hidden;
 }
 
 main {
@@ -99,6 +110,8 @@ main .mensaje {
   font-size: 1.875rem;
   font-family: "MuseoModerno", cursive;
   color: #051408;
+  background-color: #4BCE65;
+  border-radius: 6.25rem;
   grid-row-start: 5;
   grid-column-start: 1;
   grid-row-end: 6;
@@ -115,9 +128,9 @@ main .mensaje {
   grid-column-end: 3;
   height: 100%;
   display: grid;
-  grid-template-rows: 200px 360px 360px 600px 360px;
+  grid-template-rows: 150px 360px 360px 600px 360px;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 2.5rem 0rem;
+  gap: 1.875rem 0rem;
   background-image: none;
 }
 
@@ -129,7 +142,7 @@ main .mensaje {
   padding-left: 3.75rem;
 }
 .logo img {
-  width: 14.875rem;
+  width: 13.875rem;
   padding-top: 3rem;
 }
 
@@ -138,7 +151,7 @@ main .mensaje {
   grid-column-start: 1;
   grid-row-end: 3;
   grid-column-end: 3;
-  width: 80%;
+  width: 91%;
   height: 80%;
   background: white;
   box-shadow: 4px 4px 4px rgba(77, 149, 83, 0.11);
@@ -301,7 +314,7 @@ main .mensaje {
   width: 100%;
   padding: 0.9375rem;
   align-self: self-start;
-  margin-top: 1.875rem;
+  margin-top: 3.875rem;
   transition: opacity 0.3s, height 0.3s ease-out;
 }
 .cargarRutina h2 {
