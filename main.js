@@ -1,3 +1,5 @@
+// Clases
+
 function Usuario(nombre, edad, sexo, objetivo, altura, peso, rutinas){
     this.nombre = nombre;
     this.edad = edad;
@@ -437,7 +439,6 @@ function mostrarFila(evt) {
     },10000)
     
     actualizarHTML();
-    /* boton.removeEventListener('click', mostrarFila); */
 }
 
 function mostrarDetalleRutina() {
