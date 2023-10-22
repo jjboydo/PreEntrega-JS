@@ -1,4 +1,9 @@
 
+function addDarkmodeWidget() {
+    new Darkmode().showWidget();
+  }
+  window.addEventListener('load', addDarkmodeWidget);
+
 // Clases
 
 function Usuario(nombre, edad, sexo, objetivo, altura, peso, rutinas){
@@ -411,7 +416,6 @@ function crearRutina(nombre,duracion,frecuencia){
     
     let rutina = new Rutina(nombreRutina,dur,frec,ejercicios);
     usuarioRegistrado.rutinas = [...usuarioRegistrado.rutinas, rutina]
-    /* usuarioRegistrado.rutinas.push(rutina); */
     actualizarHTML();
 }
 
@@ -425,17 +429,21 @@ function mostrarRutinas() {
             <td>${rutina.nombre}</td>
             <td>${rutina.duracion}</td>
             <td>${rutina.frecuencia}</td>
-            <td><button>+</button></td>
+            <td>
+                <button class="ver-mas">+</button>
+                <button class="borrar">-</button>
+            </td>
         `;
         document.querySelector("#rutinas tbody").appendChild(filaNueva);
     });
     mostrarDetalleRutina();
+    eliminarRutina();
 }
 
 function mostrarFila(evt) {
     const boton = evt.target;
     resetDetalleRutina();
-    document.querySelector(".ejercicios-rutina").classList.remove("oct-anim");
+    /* document.querySelector(".ejercicios-rutina").classList.remove("oct-anim"); */
     const fila = boton.parentNode.parentNode;
     const nombreRutina = fila.firstElementChild.textContent;
     document.querySelector(".ejercicios-rutina h2").textContent = `${nombreRutina}:`;
@@ -451,18 +459,63 @@ function mostrarFila(evt) {
         document.querySelector("#ejercicios-rutina-table tbody").appendChild(filaNueva);
     });
 
-    setTimeout(()=>{
-        document.querySelector(".ejercicios-rutina").classList.add("oct-anim");
-    },10000)
-    
+    sweetAlertDetalleRutina();
     actualizarHTML();
 }
 
+function eliminarFila(evt) {
+    const boton = evt.target;
+    /* document.querySelector(".ejercicios-rutina").classList.remove("oct-anim"); */
+    const fila = boton.parentNode.parentNode;
+    const nombreRutina = fila.firstElementChild.textContent;
+    usuarioRegistrado.rutinas = usuarioRegistrado.rutinas.filter((rut) => rut.nombre != nombreRutina);
+    Swal.fire({
+        title: 'Estás seguro de que quieres borrar la rutina?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Borrar Rutina!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            fila.remove();
+          Swal.fire({
+            title: "La rutina ha sido eliminada",
+            timer: 3000
+          })
+        }
+      })
+
+
+    actualizarHTML();
+    sincronizarStorage();
+}
+
 function mostrarDetalleRutina() {
-    const botonesRutinas = document.querySelectorAll("#rutinas button");
+    const botonesRutinas = document.querySelectorAll("#rutinas .ver-mas");
     botonesRutinas.forEach( boton => {
         boton.addEventListener('click', mostrarFila);
     });
+}
+
+function eliminarRutina() {
+    const botonesRutinas = document.querySelectorAll("#rutinas .borrar");
+    botonesRutinas.forEach( boton => {
+        boton.addEventListener('click', eliminarFila);
+    });
+}
+
+function sweetAlertDetalleRutina(){
+    document.querySelector(".ejercicios-rutina").classList.remove("oct-anim");
+    Swal.fire({
+        html: document.querySelector(".ejercicios-rutina").outerHTML,
+        width: 800,
+        showConfirmButton: false,
+        showCloseButton: true,
+        customClass: {
+            input: '.nombre-rutina',
+        }
+      })
 }
 
 function sweetAlertRutina(){

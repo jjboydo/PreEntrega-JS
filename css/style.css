@@ -271,17 +271,17 @@ main .mensaje {
   grid-row-start: 3;
   grid-column-start: 1;
   grid-row-end: 4;
-  grid-column-end: 3;
+  grid-column-end: 4;
   margin-left: 3.75rem;
-  width: 91%;
-  height: 100%;
+  width: 90%;
+  height: 110%;
   background-color: #13441D;
   border-radius: 20px;
   overflow-y: auto;
   scroll-behavior: smooth;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   transition: opacity 0.4s ease-out;
-  margin-top: 2.5rem;
+  margin-top: 5.5rem;
 }
 .rutinas .h2-container, .ejercicios .h2-container {
   display: flex;
@@ -454,6 +454,7 @@ main .mensaje {
 .ejercicios {
   grid-row-start: 2;
   grid-row-end: 3;
+  grid-column-end: 3;
   align-self: flex-start;
   height: 37.5rem;
   margin-top: 6.25rem;
@@ -556,16 +557,13 @@ main .mensaje {
 .ejercicios-rutina, .ejercicios-cargar {
   opacity: 1;
   display: block;
-  grid-row-start: 3;
+  grid-row-start: 5;
   grid-column-start: 3;
-  grid-row-end: 4;
+  grid-row-end: 6;
   grid-column-end: 4;
   justify-self: end;
-  margin-right: 15%;
-  width: 80%;
   height: 100%;
   background-color: #4BCE65;
-  border-radius: 20px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
@@ -604,6 +602,9 @@ main .mensaje {
   margin-top: 6.25rem;
   margin-bottom: 50vh;
   height: 37.5rem;
+  margin-right: 15%;
+  width: 80%;
+  border-radius: 20px;
 }
 .ejercicios-cargar input {
   width: 3.125rem;
