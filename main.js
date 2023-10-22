@@ -1,3 +1,4 @@
+
 // Clases
 
 function Usuario(nombre, edad, sexo, objetivo, altura, peso, rutinas){
@@ -43,6 +44,8 @@ function desplegarSitio() {
     secciones.forEach( seccion => {
         seccion.classList.contains("inicio") ? seccion.classList.add("oculto") : seccion.classList.remove("oculto");
     })
+
+    document.querySelector(".seleccion-ejercicios").classList.add("oculto");
     
     header.querySelector(".datosUsuario h2").textContent = usuarioRegistrado.nombre;
     
@@ -241,22 +244,37 @@ function validarNumero(mensaje) {
 }
 
 function mostrarExito(msg){
-    const mensajeExito = document.createElement('p');
-    mensajeExito.textContent = msg;
-    mensajeExito.classList.add('mensaje')
-    const modal = document.querySelector('main');
-    modal.appendChild(mensajeExito);
+    Swal.fire({
+        icon: 'success',
+        title: 'Éxito...',
+        text: msg,
+        timer: 5000
+      })
+}
 
-    setTimeout(()=>{
-        mensajeExito.remove()
-        scrollA("#logo");
-        document.querySelector(".unstyled .activo").classList.remove("activo");
-        document.querySelector(".unstyled").firstElementChild.classList.add("activo");
-    },2000)
+function mostrarError(msg) {
+    Swal.fire({
+        icon: 'error',
+        title: 'Error...',
+        text: msg,
+        timer: 5000
+      })
 }
 
 function scrollA(contenedor){
-    document.querySelector(contenedor).scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+    document.querySelector(contenedor).scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+}
+
+function ocultarInicio(){
+    document.querySelector(".bienvenida").classList.add("oculto");
+    document.querySelector(".objetivo").classList.add("oculto");
+    document.querySelector(".rutinas").classList.add("oculto");
+}
+
+function mostrarInicio(){
+    document.querySelector(".bienvenida").classList.remove("oculto");
+    document.querySelector(".objetivo").classList.remove("oculto");
+    document.querySelector(".rutinas").classList.remove("oculto");
 }
 
 function liActivo(evt){
@@ -308,10 +326,12 @@ function listarEjercicios(){
 function cargarEjercicios(ejercicios){
     
     ejerciciosCargados.classList.remove("oct-anim");
-    console.log(botonesEjercicio);
     botonesEjercicio.forEach( boton => {
         boton.addEventListener('click', insertarFila);
     });
+
+    ocultarInicio();
+    document.querySelector(".seleccion-ejercicios").classList.remove("oculto");
 
     function guardarRutinaClick() {
         const ejerciciosListos = ejerciciosCargados.querySelectorAll("tbody tr");
@@ -328,16 +348,17 @@ function cargarEjercicios(ejercicios){
 
         ejerciciosCargados.classList.add("oct-anim");
         document.querySelector("#ejercicios").classList.add("oct-anim");
-        document.querySelector(".cargarRutina").classList.remove("oculto");
+        mostrarInicio();
         resetBtn();
         resetEjercicios();
         mostrarExito("Rutina cargada correctamente");
+        document.querySelector(".seleccion-ejercicios").classList.add("oculto");
         sincronizarStorage();
         
         guardarRutina.removeEventListener('click', guardarRutinaClick);
     }
-    
-    const guardarRutina = ejerciciosCargados.querySelector(".btn");
+
+    const guardarRutina = document.querySelector(".btn");
     guardarRutina.addEventListener('click', guardarRutinaClick);
 }
 
@@ -373,29 +394,25 @@ function resetDetalleRutina() {
 
 // Crear nueva rutina
 
-function crearRutina(evt){
+function crearRutina(nombre,duracion,frecuencia){
 
-    evt.preventDefault();
-
-    let nombreRutina = formularioCargaRutina.querySelector("#nombreRut").value;
+    let nombreRutina = nombre;
     if(usuarioRegistrado.rutinas.some((rut) => rut.nombre === nombreRutina)){
-        mostrarExito("El nombre de la rutina ya existe");
-        formularioCargaRutina.reset();
+        mostrarError("El nombre de la rutina ya existe");
         return;
     }
-    let duracion = formularioCargaRutina.querySelector("#duracion").value;
-    let frecuencia = formularioCargaRutina.querySelector("#dias").value;
+    let dur = duracion;
+    let frec = frecuencia;
     let ejercicios = [];
     cargarEjercicios(ejercicios);
-    document.querySelector(".cargarRutina").classList.add("oculto");
     const listaEjercicios = document.querySelector("#ejercicios");
     listaEjercicios.classList.remove("oct-anim");
 
     
-    let rutina = new Rutina(nombreRutina,duracion,frecuencia,ejercicios);
-    usuarioRegistrado.rutinas.push(rutina);
+    let rutina = new Rutina(nombreRutina,dur,frec,ejercicios);
+    usuarioRegistrado.rutinas = [...usuarioRegistrado.rutinas, rutina]
+    /* usuarioRegistrado.rutinas.push(rutina); */
     actualizarHTML();
-    formularioCargaRutina.reset();
 }
 
 // Mostrar las rutinas del usuario
@@ -448,9 +465,53 @@ function mostrarDetalleRutina() {
     });
 }
 
+function sweetAlertRutina(){
+    Swal.fire({
+        title: 'Cargar nueva rutina',
+        html: `<form action="" id="form-rutina" class="form-rutina">
+        <div class="nombre-rutina">
+            <label for="nombreRut">Nombre de Rutina:</label>
+            <input type="text" class="swal2-input" name="nombreRut" id="nombreRut" required>
+        </div>
+
+        <div>
+            <label for="duracion">Duración (min):</label>
+            <input type="number" class="swal2-input" name="duracion" id="duracion" min="10" required>
+        </div>
+
+        <div>
+            <label for="dias">Días a la semana:</label>
+            <input type="number" class="swal2-input" name="dias" id="dias" min="1" max="7" required>
+        </div>
+
+    </form>`,
+        confirmButtonText: 'Seleccionar ejercicios',
+        showCancelButton: true,
+        focusConfirm: false,
+        cancelButtonText: 'Cancelar',
+        showLoaderOnConfirm: true,
+        width: 800,
+        customClass: {
+            input: '.nombre-rutina',
+        },
+        preConfirm: () => {
+          const nombre = Swal.getPopup().querySelector('#nombreRut').value;
+          const duracion = Swal.getPopup().querySelector('#duracion').value;
+          const frecuencia = Swal.getPopup().querySelector('#dias').value;
+          if (!nombre || !duracion || !frecuencia || !(frecuencia > 0 && frecuencia < 7) || !(duracion > 0)) {
+            Swal.showValidationMessage(`Los datos no son válidos`)
+          }
+          return { nombre: nombre , duracion: duracion , frecuencia: frecuencia }
+        }
+      }).then((result) => {
+        crearRutina(result.value.nombre, result.value.duracion, result.value.frecuencia);
+      })
+}
+
 formularioInicio.addEventListener('submit', crearUsuario);
-formularioCargaRutina.addEventListener('submit', crearRutina);
+/* formularioCargaRutina.addEventListener('submit', crearRutina); */
 document.querySelectorAll(".unstyled li").forEach(li => {
     li.addEventListener('click', liActivo);
 });
 document.querySelector(".borrar").addEventListener('click', limpiarStorage);
+document.querySelector(".agregarRut").addEventListener('click', sweetAlertRutina);
