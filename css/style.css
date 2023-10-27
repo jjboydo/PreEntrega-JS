@@ -42,6 +42,26 @@ body.swal2-shown > [aria-hidden=true] {
   filter: blur(10px);
 }
 
+.modal-a {
+  text-decoration: none;
+  color: #EBFAEE;
+  background-color: #13441D;
+  border-radius: 1.25rem 1.25rem 0 0;
+  padding: 0 0.625rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.modal-a:hover {
+  background-color: #FF0000;
+  transform: scale(1.05);
+  transform: translateZ(50px);
+  color: black;
+}
+
+.modal-img {
+  width: 70%;
+  border-radius: 1.25rem;
+}
+
 .grid {
   display: grid;
   grid-template-rows: 1fr;
@@ -90,6 +110,10 @@ body.swal2-shown > [aria-hidden=true] {
 }
 .unstyled a {
   text-decoration: none;
+}
+
+.com-aleat {
+  cursor: pointer;
 }
 
 .navbar {

@@ -568,33 +568,38 @@ formularioInicio.addEventListener('submit', crearUsuario);
 }); */
 document.querySelector(".borrar").addEventListener('click', limpiarStorage);
 document.querySelector(".agregarRut").addEventListener('click', sweetAlertRutina);
-document.querySelector(".random").addEventListener('click', () => {
+document.querySelector(".com-aleat").addEventListener('click', () => {
     const apiUrl = 'https://www.themealdb.com/api/json/v1/1/random.php';
-
-// Hacer la solicitud a la API
-fetch(apiUrl)
-  .then(response => {
-    // Verificar si la solicitud fue exitosa (código de estado 200)
-    if (!response.ok) {
-      throw new Error(`La solicitud falló con el código de estado ${response.status}`);
-    }
     
-    // Parsear la respuesta como JSON
-    return response.json();
-  })
-  .then(data => {
-    // Trabajar con los datos en formato JSON
-    console.log(data);
+    fetch(apiUrl)
+      .then(res => {        
+        return res.json();
+      })
+      .then(data => {
+        console.log(data);
 
-    // Acceder a información específica de la receta
-    const meal = data.meals[0];
-    console.log('Nombre de la receta:', meal.strMeal);
-    console.log('Ingredientes:', meal.strIngredients);
-    console.log('Instrucciones:', meal.strInstructions);
-  })
-  .catch(error => {
-    // Manejar errores en caso de que la solicitud falle
-    console.error('Error en la solicitud:', error);
-  });
-
+        Swal.fire({
+            html: `
+                <h2>${data.meals[0].strMeal}</h2>
+                <img src="${data.meals[0].strMealThumb}" alt="Foto-Receta" class="modal-img">
+                <p>${data.meals[0].strCategory}, ${data.meals[0].strArea}</p>
+                <h3>Preparación: </h3>
+                <p>${data.meals[0].strInstructions}</p>
+                <a href="${data.meals[0].strYoutube}" target="_blank" rel="noopener noreferrer" class="modal-a">Ver receta en YouTube</a>
+                <br>
+                <a href="${data.meals[0].strSource}" target="_blank" rel="noopener noreferrer" class="modal-a">Ver mas detalles de la receta</a>
+                `,
+            width: 800,
+            showConfirmButton: false,
+            showCloseButton: true,
+            customClass: {
+                content: '.modal-a',
+            }
+          })
+      })
+      .catch(error => {
+        console.error(`Error en la solicitud: ${error}`);
+      });
+    
 });
+
