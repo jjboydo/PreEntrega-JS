@@ -1,39 +1,101 @@
 @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+.modo-claro {
+  --color-30: #13441D;
+  --color-10: #4BCE65;
+  --color-60: #BBECC5;
+  --color-bg: #EFFBF1;
+  --color-text: #051408;
+}
+
+.modo-oscuro {
+  --color-30: #EBFAEE;
+  --color-10: #4BCE65;
+  --color-60: #13441D;
+  --color-bg: #041006;
+  --color-text: #EBFAEE;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+.dark-container input[type=checkbox] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+.dark-container label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 55px;
+  height: 30px;
+  background: var(--color-30);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+  position: relative;
+}
+.dark-container label:after {
+  content: "";
+  background: #fff;
+  width: 20px;
+  height: 20px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  left: 4px;
+  transition: cubic-bezier(0.68, -0.55, 0.27, 1.55) 320ms;
+}
+.dark-container input:checked + label {
+  background: var(--color-10);
+}
+.dark-container input:checked + label:after {
+  left: calc(100% - 5px);
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  -o-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+
 .swal2-title {
   font-family: "MuseoModerno", cursive;
   font-size: 40px !important;
-  color: #13441D !important;
+  color: var(--color-30) !important;
 }
 
 .swal2-html-container {
   font-family: "MuseoModerno", cursive;
   font-size: 20px !important;
-  color: #13441D !important;
+  color: var(--color-30) !important;
 }
 
 .swal2-confirm {
-  background-color: #13441D !important;
+  background-color: var(--color-60) !important;
+  color: var(--color-text) !important;
   font-family: "MuseoModerno", cursive;
 }
 
 .swal2-cancel {
-  background-color: #EBFAEE !important;
-  color: #13441D !important;
+  background-color: #707e78 !important;
+  color: black !important;
   font-family: "MuseoModerno", cursive;
 }
 
 .swal2-popup {
-  background-color: #4BCE65;
+  background-color: var(--color-10);
 }
 
 .swal2-input {
-  background-color: #EBFAEE;
+  background-color: var(--color-60);
   border-radius: 0.75rem;
 }
 
@@ -44,8 +106,8 @@ body.swal2-shown > [aria-hidden=true] {
 
 .modal-a {
   text-decoration: none;
-  color: #EBFAEE;
-  background-color: #13441D;
+  color: var(--color-60);
+  background-color: var(--color-30);
   border-radius: 1.25rem 1.25rem 0 0;
   padding: 0 0.625rem;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -85,7 +147,7 @@ body.swal2-shown > [aria-hidden=true] {
   font-family: "MuseoModerno", cursive;
 }
 .header h1 a {
-  color: #4BCE65;
+  color: #EBFAEE;
   text-decoration: none;
 }
 .header .datosUsuario {
@@ -124,6 +186,7 @@ body.swal2-shown > [aria-hidden=true] {
 }
 .navbar ul {
   border-top: solid 1px #13441D;
+  width: 100%;
 }
 .navbar li {
   border-bottom: solid 1px #13441D;
@@ -134,7 +197,7 @@ body.swal2-shown > [aria-hidden=true] {
   border-radius: 1.5rem 0 0 1.5rem;
 }
 .navbar li:hover {
-  background-color: #4BCE65;
+  background-color: var(--color-10);
   transform: scale(1.05);
   transform: translateZ(50px);
 }
@@ -149,7 +212,7 @@ body.swal2-shown > [aria-hidden=true] {
 }
 
 .activo {
-  background-color: #4BCE65;
+  background-color: var(--color-10);
 }
 
 body {
@@ -157,7 +220,7 @@ body {
 }
 
 main {
-  background-color: #EBFAEE;
+  background-color: var(--color-bg);
   background-image: url(../assets/img/foto-inicio.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -166,12 +229,13 @@ main {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  transition: cubic-bezier(0.68, -0.55, 0.27, 1.55) 420ms !important;
 }
 main .mensaje {
   font-size: 1.875rem;
   font-family: "MuseoModerno", cursive;
-  color: #051408;
-  background-color: #4BCE65;
+  color: var(--color-text);
+  background-color: var(--color-10);
   border-radius: 6.25rem;
   grid-row-start: 5;
   grid-column-start: 1;
@@ -206,6 +270,25 @@ main .mensaje {
   padding-top: 3rem;
 }
 
+.dark-container {
+  grid-row-start: 1;
+  grid-column-start: 3;
+  grid-row-end: 2;
+  grid-column-end: 4;
+  justify-self: flex-end;
+  padding-right: 15%;
+  align-self: center;
+}
+
+.git-hub {
+  grid-row-start: 1;
+  grid-column-start: 3;
+  grid-row-end: 2;
+  grid-column-end: 4;
+  justify-self: flex-end;
+  padding-right: 40%;
+}
+
 .bienvenida {
   grid-row-start: 2;
   grid-column-start: 1;
@@ -213,31 +296,33 @@ main .mensaje {
   grid-column-end: 3;
   width: 91%;
   height: 70%;
-  background: white;
-  box-shadow: 4px 4px 4px rgba(77, 149, 83, 0.11);
+  background: var(--color-60);
+  box-shadow: 0px 8px 8px 3px rgba(0, 0, 0, 0.25);
   border-radius: 12px;
   margin-left: 3.75rem;
+  transition: cubic-bezier(0.68, -0.55, 0.27, 1.55) 420ms !important;
 }
 .bienvenida h2 {
-  padding: 2.5rem 2.125rem;
-  padding-bottom: 0rem;
+  padding: 2rem 2.125rem;
+  padding-bottom: 1rem;
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   font-family: "MuseoModerno", cursive;
-  color: #051408;
+  color: var(--color-text);
 }
 .bienvenida h2 strong {
-  color: #4BCE65;
+  color: var(--color-10);
 }
 .bienvenida p {
+  color: var(--color-text);
   font-size: 18px;
   font-style: normal;
   font-weight: 275;
   line-height: normal;
   font-family: "Poppins", sans-serif;
-  padding: 1.875rem;
+  padding: 0 1.875rem 0.625rem 1.875rem;
 }
 
 .objetivo {
@@ -249,13 +334,14 @@ main .mensaje {
   margin-right: 15%;
   width: 80%;
   height: 100%;
-  background-color: #4BCE65;
+  background-color: var(--color-10);
   border-radius: 20px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  transition: cubic-bezier(0.68, -0.55, 0.27, 1.55) 420ms !important;
 }
 .objetivo h2 {
   font-family: "MuseoModerno", cursive;
@@ -263,16 +349,16 @@ main .mensaje {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  color: #EBFAEE;
+  color: var(--color-60);
 }
 .objetivo .obj {
-  color: #13441D;
+  color: var(--color-30);
 }
 .objetivo .kcal {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #13441D;
+  color: var(--color-30);
   font-size: 32px;
   font-weight: bolder;
   line-height: normal;
@@ -286,7 +372,7 @@ main .mensaje {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  color: #EBFAEE;
+  color: var(--color-60);
   font-family: "MuseoModerno", cursive;
 }
 
@@ -299,13 +385,15 @@ main .mensaje {
   margin-left: 3.75rem;
   width: 90%;
   height: 110%;
-  background-color: #13441D;
+  background-color: var(--color-60);
   border-radius: 20px;
   overflow-y: auto;
+  scrollbar-width: none;
   scroll-behavior: smooth;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 8px 8px 3px rgba(0, 0, 0, 0.25);
   transition: opacity 0.4s ease-out;
   margin-top: 5.5rem;
+  transition: cubic-bezier(0.68, -0.55, 0.27, 1.55) 420ms !important;
 }
 .rutinas .h2-container, .ejercicios .h2-container {
   display: flex;
@@ -316,7 +404,7 @@ main .mensaje {
 .rutinas h2, .ejercicios h2 {
   font-family: "MuseoModerno", cursive;
   font-size: 32px;
-  color: #EBFAEE;
+  color: var(--color-30);
   padding-bottom: 0rem;
 }
 .rutinas table, .ejercicios table {
@@ -327,7 +415,7 @@ main .mensaje {
 .rutinas table thead tr th, .ejercicios table thead tr th {
   font-family: "MuseoModerno", cursive;
   font-size: 1rem;
-  color: #4BCE65;
+  color: var(--color-30);
 }
 .rutinas table tbody td, .ejercicios table tbody td {
   background-color: rgba(255, 255, 255, 0);
@@ -336,7 +424,7 @@ main .mensaje {
   opacity: 0.6;
   font-family: "Poppins", sans-serif;
   font-size: 16px;
-  color: #EBFAEE;
+  color: var(--color-30);
   font-weight: bold;
 }
 .rutinas table tbody tr button, .ejercicios table tbody tr button {
@@ -344,14 +432,14 @@ main .mensaje {
   border: none;
   font-family: "MuseoModerno", cursive;
   width: 1.25rem;
-  background-color: #EBFAEE;
-  color: #13441D;
+  background-color: var(--color-30);
+  color: var(--color-60);
   cursor: pointer;
   font-weight: bolder;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .rutinas table tr:hover td, .ejercicios table tr:hover td {
-  background-color: #4BCE65;
+  background-color: var(--color-10);
   transition-delay: 0s, 0s;
   opacity: 1;
   font-size: 1.01em;
@@ -369,8 +457,12 @@ main .mensaje {
   padding: 0.5em;
 }
 
+.rutinas::-webkit-scrollbar, .ejercicios::-webkit-scrollbar {
+  width: 0;
+}
+
 .agregarRut {
-  background-color: #4BCE65;
+  background-color: var(--color-10);
   width: 3.125rem;
   height: 3.125rem;
   border-radius: 12px;
@@ -380,7 +472,7 @@ main .mensaje {
 .agregarRut p {
   display: flex;
   align-items: start;
-  color: #EBFAEE;
+  color: var(--color-60);
   font-family: "MuseoModerno", cursive;
   font-weight: bolder;
   font-size: 2.0625rem;
@@ -393,7 +485,7 @@ main .mensaje {
   grid-column-start: 2;
   grid-row-end: 5;
   grid-column-end: 3;
-  background-color: #4BCE65;
+  background-color: var(--color-10);
   border-radius: 12px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   width: 100%;
@@ -405,7 +497,7 @@ main .mensaje {
 .cargarRutina h2 {
   font-size: 32px;
   font-family: "MuseoModerno", cursive;
-  color: #13441D;
+  color: var(--color-30);
   padding-bottom: 0.75rem;
 }
 .cargarRutina .form-rutina {
@@ -416,7 +508,7 @@ main .mensaje {
 .cargarRutina .form-rutina label {
   font-size: 20px;
   font-family: "MuseoModerno", cursive;
-  color: #13441D;
+  color: var(--color-30);
 }
 .cargarRutina .form-rutina div {
   display: flex;
@@ -430,7 +522,7 @@ main .mensaje {
   height: 2.625rem;
   width: 6.25rem;
   border-radius: 0.75rem;
-  background-color: #EBFAEE;
+  background-color: var(--color-60);
   border: none;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
@@ -449,7 +541,7 @@ main .mensaje {
 }
 .cargarRutina .form-rutina .buttons button {
   border-radius: 0.75rem;
-  background-color: #EBFAEE;
+  background-color: var(--color-60);
   font-family: "MuseoModerno", cursive;
   font-weight: bold;
   width: 9.375rem;
@@ -459,20 +551,21 @@ main .mensaje {
   cursor: pointer;
 }
 .cargarRutina .form-rutina .buttons .guardar {
-  background-color: #13441D;
-  color: #EBFAEE;
+  background-color: var(--color-30);
+  color: var(--color-60);
   width: 11.25rem;
 }
 
 .seleccion-ejercicios {
   grid-row-start: 2;
   grid-row-end: 3;
-  grid-column-start: 2;
-  grid-column-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 4;
   font-family: "MuseoModerno", cursive;
-  color: #13441D;
+  color: var(--color-30);
   align-self: self-start;
   padding-top: 1.875rem;
+  justify-self: center;
 }
 
 .ejercicios {
@@ -482,6 +575,11 @@ main .mensaje {
   align-self: flex-start;
   height: 37.5rem;
   margin-top: 6.25rem;
+  scrollbar-width: none;
+}
+.ejercicios h2 {
+  padding: 2rem 2.125rem;
+  padding-bottom: 1rem;
 }
 
 .guardar-rutina {
@@ -494,9 +592,9 @@ main .mensaje {
 }
 
 .inicio {
-  width: 31.25rem;
-  height: 37.5rem;
-  background-color: #EBFAEE;
+  width: 34.25rem;
+  height: 40.5rem;
+  background-color: var(--color-60);
   border-radius: 20px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   display: flex;
@@ -517,13 +615,13 @@ main .mensaje {
 }
 .inicio .form-inicio legend {
   font-family: "Poppins", sans-serif;
-  color: #13441D;
+  color: var(--color-30);
   text-align: center;
 }
 .inicio .form-inicio label {
   font-size: 20px;
   font-family: "MuseoModerno", cursive;
-  color: #13441D;
+  color: var(--color-30);
 }
 .inicio .form-inicio .selects {
   display: flex;
@@ -534,9 +632,9 @@ main .mensaje {
   height: 1.875rem;
   font-family: "MuseoModerno", cursive;
   font-weight: bold;
-  background-color: #13441D;
+  background-color: var(--color-30);
   border: none;
-  color: #EBFAEE;
+  color: var(--color-60);
   opacity: 90%;
 }
 .inicio .form-inicio div {
@@ -552,10 +650,10 @@ main .mensaje {
   height: 2.625rem;
   width: 6.25rem;
   border-radius: 0.75rem;
-  background-color: #13441D;
+  background-color: var(--color-30);
   border: none;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  color: #EBFAEE;
+  color: var(--color-60);
   opacity: 90%;
 }
 .inicio .form-inicio .nombre-usuario {
@@ -567,7 +665,7 @@ main .mensaje {
 .inicio .form-inicio button {
   align-self: center;
   border-radius: 0.75rem;
-  background-color: #4BCE65;
+  background-color: var(--color-10);
   font-family: "MuseoModerno", cursive;
   font-weight: bold;
   font-size: 1rem;
@@ -587,7 +685,7 @@ main .mensaje {
   grid-column-end: 4;
   justify-self: end;
   height: 100%;
-  background-color: #4BCE65;
+  background-color: var(--color-10);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
@@ -602,7 +700,7 @@ main .mensaje {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  color: #13441D;
+  color: var(--color-30);
 }
 .ejercicios-rutina table, .ejercicios-cargar table {
   width: 90%;
@@ -612,7 +710,11 @@ main .mensaje {
 .ejercicios-rutina table th, .ejercicios-cargar table th, .ejercicios-rutina table td, .ejercicios-cargar table td {
   padding: 0.5em;
   font-family: "MuseoModerno", cursive;
-  color: #13441D;
+  color: var(--color-30);
+}
+
+.ejercicios-cargar::-webkit-scrollbar {
+  width: 0;
 }
 
 .ejercicios-cargar {
@@ -635,15 +737,15 @@ main .mensaje {
   border-radius: 0.75rem;
   border: none;
   height: 1.875rem;
-  color: #13441D;
+  color: var(--color-30);
   font-family: "MuseoModerno", cursive;
   text-align: center;
 }
 
 .btn {
   border-radius: 0.75rem;
-  background-color: #13441D;
-  color: #EBFAEE;
+  background-color: var(--color-30);
+  color: var(--color-60);
   font-family: "MuseoModerno", cursive;
   width: 12.5rem;
   height: 3.125rem;
@@ -653,8 +755,8 @@ main .mensaje {
   border: none;
 }
 .btn:hover {
-  background-color: #4BCE65;
-  color: #13441D;
+  background-color: var(--color-10);
+  color: var(--color-30);
 }
 
 .oculto {
@@ -664,6 +766,288 @@ main .mensaje {
 .oct-anim {
   opacity: 0;
   display: none;
+}
+
+@media (max-width: 1400px) {
+  body {
+    overflow: auto;
+  }
+  .grid-main {
+    grid-template-rows: 150px 400px 500px;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 3.125rem;
+  }
+  .dark-container {
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+  .bienvenida {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    width: 85%;
+    height: 100%;
+  }
+  .objetivo {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    margin-right: 10%;
+  }
+  .rutinas, .ejercicios {
+    width: 90%;
+    height: 90%;
+    margin-top: 0;
+  }
+  .ejercicios {
+    grid-row: 2/3;
+    grid-column: 1/3;
+    margin-top: 3.75rem;
+    height: 120%;
+  }
+  .seleccion-ejercicios {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    justify-self: center;
+    padding-top: 0;
+  }
+  .ejercicios-cargar {
+    grid-row: 3/4;
+    grid-column: 1/3;
+    margin-top: 8.25rem;
+    width: 90%;
+    margin-right: 4.5%;
+  }
+  .guardar-rutina {
+    display: flex;
+    align-items: end;
+    height: 16.875rem;
+  }
+}
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: 210px 1fr;
+  }
+  .header {
+    width: 13.125rem;
+  }
+  .grid-main {
+    grid-template-rows: 150px 450px 500px;
+  }
+  .bienvenida {
+    margin-left: 3.125rem;
+  }
+  .rutinas, .ejercicios {
+    width: 87%;
+    margin-left: 3.125rem;
+  }
+}
+@media (max-width: 980px) {
+  .grid {
+    grid-template-rows: 80px 1fr;
+    grid-template-columns: 1fr;
+  }
+  .header {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-row-end: 2;
+    grid-column-end: 2;
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  .header .datosUsuario {
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 20%;
+    gap: 0.9375rem;
+  }
+  .header .datosUsuario h2 {
+    padding-top: 0;
+    font-family: "MuseoModerno", cursive;
+    font-size: 30px;
+    color: #EBFAEE;
+    justify-self: center;
+    text-align: center;
+  }
+  .header .datosUsuario img {
+    width: 3.125rem;
+  }
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    height: 3.125rem;
+    gap: 1.25rem;
+  }
+  .navbar ul {
+    display: flex;
+    flex-direction: row;
+    gap: 0.625rem;
+    width: 30%;
+  }
+  .navbar li {
+    width: 12.5rem;
+    border-bottom: solid 1px #13441D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3125rem 0.625rem;
+    border-radius: 1.5rem;
+    height: 3.75rem;
+  }
+  .grid-main {
+    grid-row-start: 2;
+    grid-column-start: 1;
+    grid-row-end: 3;
+    grid-column-end: 2;
+  }
+  .rutinas, .ejercicios {
+    margin-left: 3.75rem;
+  }
+  .ejercicios {
+    margin-left: 3.125rem;
+  }
+}
+@media (max-width: 768px) {
+  .header {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-row-end: 2;
+    grid-column-end: 2;
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  .header .datosUsuario {
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 20%;
+    gap: 0.9375rem;
+  }
+  .header .datosUsuario h2 {
+    padding-top: 0;
+    font-family: "MuseoModerno", cursive;
+    font-size: 30px;
+    color: #EBFAEE;
+    justify-self: center;
+    text-align: center;
+  }
+  .header .datosUsuario img {
+    width: 3.125rem;
+  }
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    height: 3.125rem;
+    gap: 1.25rem;
+  }
+  .navbar ul {
+    display: flex;
+    flex-direction: row;
+    gap: 0.625rem;
+    width: 30%;
+  }
+  .navbar li {
+    width: 12.5rem;
+    border-bottom: solid 1px #13441D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3125rem 0.625rem;
+    border-radius: 1.5rem;
+    height: 3.75rem;
+  }
+}
+@media (max-width: 576px) {
+  .header .datosUsuario h2 {
+    font-size: 24px;
+  }
+  .navbar {
+    gap: 2.5rem;
+  }
+  .navbar ul {
+    display: flex;
+    flex-direction: row;
+    gap: 0.625rem;
+    width: 30%;
+  }
+  .navbar li {
+    width: 7.5rem;
+    transition: none;
+  }
+  .navbar li:hover {
+    background-color: #13441D;
+  }
+  .grid-main {
+    grid-template-rows: 180px 400px 400px 500px;
+  }
+  #logo {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-row-end: 2;
+    grid-column-end: 3;
+    padding-left: 0;
+    justify-self: center;
+    align-self: self-start;
+    margin-top: 1.25rem;
+  }
+  .logo {
+    padding-left: 0;
+  }
+  .logo img {
+    width: 10.875rem;
+    padding-top: 0;
+  }
+  .dark-container {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    padding: 0;
+    justify-self: center;
+    align-self: flex-end;
+  }
+  .bienvenida {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    margin-left: 2.0625rem;
+  }
+  .objetivo {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    margin-right: 8.5%;
+    width: 85%;
+    height: 100%;
+  }
+  .rutinas, .ejercicios {
+    grid-row-start: 4;
+    grid-row-end: 5;
+    margin-left: 1.875rem;
+  }
+  .ejercicios {
+    grid-row-start: 2;
+    grid-row-end: 3;
+  }
+  .ejercicios-cargar {
+    grid-row: 3/4;
+    grid-column: 1/3;
+    margin-top: 8.25rem;
+    width: 90%;
+    margin-right: 4.5%;
+  }
+  .guardar-rutina {
+    grid-row-start: 4;
+    grid-row-end: 5;
+    height: 22.875rem;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

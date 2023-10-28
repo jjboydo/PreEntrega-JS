@@ -1,6 +1,18 @@
-$color-60: #EBFAEE;
-$color-30: #13441D;
-$color-10: #4BCE65;
-$color-text: #051408;
 $typo-titulos: 'MuseoModerno', cursive;
 $typo-parrafos: 'Poppins', sans-serif;
+
+.modo-claro {
+    --color-30: #13441D;
+    --color-10: #4BCE65;
+    --color-60: #BBECC5;
+    --color-bg: #EFFBF1;
+    --color-text: #051408;
+  }
+  
+  .modo-oscuro {
+    --color-30: #EBFAEE;
+    --color-10: #4BCE65;
+    --color-60: #13441D;
+    --color-bg: #041006;
+    --color-text: #EBFAEE;
+  }

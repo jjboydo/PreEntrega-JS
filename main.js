@@ -1,8 +1,9 @@
+const checkbox = document.querySelector("#switch");
 
-function addDarkmodeWidget() {
-    new Darkmode().showWidget();
-  }
-  window.addEventListener('load', addDarkmodeWidget);
+checkbox.addEventListener('change', function () {
+    document.body.classList.toggle('modo-oscuro', this.checked);
+    document.body.classList.toggle('modo-claro', !this.checked);
+});
 
 // Clases
 
@@ -44,6 +45,9 @@ function desplegarSitio() {
     
     const logo = document.querySelector(".logo");
     logo.classList.remove("oculto");
+
+    const darkBtn = document.querySelector(".dark-container");
+    darkBtn.classList.remove("oculto");
     
     const secciones = document.querySelectorAll("section");
     secciones.forEach( seccion => {
@@ -558,7 +562,23 @@ function sweetAlertRutina(){
         }
       }).then((result) => {
         crearRutina(result.value.nombre, result.value.duracion, result.value.frecuencia);
-      })
+      }).catch(error => {
+        console.error(`Error: ${error}`);
+      });
+}
+
+async function traducirTexto() {
+    const res = await fetch("https://libretranslate.com/translate", {
+  method: "POST",
+  body: JSON.stringify({
+    q: "Hello!",
+    source: "en",
+    target: "es"
+  }),
+  headers: { "Content-Type": "application/json" }
+});
+
+console.log(await res.json());
 }
 
 formularioInicio.addEventListener('submit', crearUsuario);
@@ -577,6 +597,7 @@ document.querySelector(".com-aleat").addEventListener('click', () => {
       })
       .then(data => {
         console.log(data);
+        traducirTexto();
 
         Swal.fire({
             html: `
