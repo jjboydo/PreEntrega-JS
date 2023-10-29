@@ -281,16 +281,6 @@ main {
   align-self: center;
 }
 
-.git-hub {
-  grid-row-start: 1;
-  grid-column-start: 3;
-  
-  grid-row-end: 2;
-  grid-column-end: 4;
-  justify-self: flex-end;
-  padding-right: 40%;
-}
-
 .bienvenida {
   grid-row-start: 2;
   grid-column-start: 1;
@@ -609,7 +599,6 @@ main {
 }
 
 .inicio {
-  // margin-left: 3.75rem;
   width: 34.25rem;
   height: 40.5rem;
   background-color: var(--color-60);
@@ -960,6 +949,10 @@ main {
     margin-left: 3.125rem;
   }
 
+  .oculto {
+    display: none;
+  }
+
 }
 
 @media (max-width:768px){
@@ -994,6 +987,27 @@ main {
     }
   }
 
+  .inicio {
+    width: 31.25rem;
+    height: 34.5rem;
+    img {
+      width: 9.375rem;
+    }
+    .form-inicio {
+      legend {
+        font-size: 1rem;
+      }
+      label {
+        font-size: 16px;
+      }
+      div {
+        input {
+          height: 1.875rem;
+        }
+      }
+    }
+  }
+
   .navbar{ 
     display: flex;
     flex-direction: row;
@@ -1018,6 +1032,10 @@ main {
       border-radius: 1.5rem;
       height: 3.75rem;
     }   
+  }
+
+  .oculto {
+    display: none;
   }
 
 }
@@ -1082,6 +1100,32 @@ main {
     align-self: flex-end;
   }
 
+  .inicio {
+    width: 25.25rem;
+    height: 32.5rem;
+    img {
+      width: 9.375rem;
+    }
+    .form-inicio {
+      legend {
+        font-size: .875rem;
+      }
+      label {
+        font-size: 12px;
+      }
+      .selects {
+        select {
+          font-size: .5rem;
+        }
+      }
+      div {
+        input {
+          height: 1.875rem;
+        }
+      }
+    }
+  }
+
   .bienvenida {
     grid-column-start: 1;
     grid-column-end: 3;
@@ -1098,11 +1142,21 @@ main {
     height: 100%;
   }
 
-  .rutinas {
-    grid-row-start: 4;
-    grid-row-end: 5;
-    margin-left: 1.875rem;
-  }
+    .rutinas {
+      grid-row-start: 4;
+      grid-row-end: 5;
+      margin-left: 1.875rem;
+  
+      table {  
+        thead {
+          tr {
+            th {
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
 
   .ejercicios {
     grid-row-start: 2;
@@ -1121,6 +1175,48 @@ main {
     grid-row-start: 4;
     grid-row-end: 5;
     height: 22.875rem;
+  }
+
+  .oculto {
+    display: none;
+  }
+
+}
+
+@media (max-width:576px){
+
+  .grid-main {
+    grid-template-rows: 180px 440px 400px 500px;
+  }
+
+  .navbar {
+    a{
+      padding: 1.1em 0;
+      color: #EBFAEE;
+      font: 400 0.9em $typo-titulos;
+      text-align: center;
+      
+      &:hover{
+        color: #fff;
+      }
+    }
+  }
+
+  .ejercicios-rutina table, .ejercicios-cargar table {
+    width: 100%;
+    margin: 0;
+  }
+
+  .swal2-html-container {
+    font-size: 12px !important;
+  }
+
+  .swal2-title {
+    font-size: 30px !important;
+  }
+
+  .oculto {
+    display: none;
   }
 
 }

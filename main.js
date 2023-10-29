@@ -1,3 +1,5 @@
+// Modo oscuro
+
 const checkbox = document.querySelector("#switch");
 
 checkbox.addEventListener('change', function () {
@@ -149,6 +151,7 @@ const ejerciciosPreCargados = [
         "musculo": "Bíceps"
     }
 ];
+
 listarEjercicios();
 const formularioInicio = document.querySelector('#form-inicio');
 const formularioCargaRutina = document.querySelector('#form-rutina');
@@ -188,7 +191,6 @@ function crearUsuario(evt){
     let rutinas = [];
     
     usuarioRegistrado = new Usuario(nombreUsuario, edad, sexo, objetivo, altura, peso, rutinas);
-    console.log(usuarioRegistrado);
 
     sincronizarStorage();
     desplegarSitio();
@@ -239,19 +241,6 @@ function calcularFactorActividad (minutosEjercicioSemanal){
     }
 }
 
-// Validacion de numeros
-
-function validarNumero(mensaje) {
-    let entrada;
-    do {
-        entrada = parseInt(prompt(mensaje));
-        if (isNaN(entrada) || entrada <= 0) {
-            alert("Por favor, ingresa un número válido y positivo.");
-        }
-    } while (isNaN(entrada) || entrada <= 0);
-    return entrada;
-}
-
 function mostrarExito(msg){
     Swal.fire({
         icon: 'success',
@@ -270,10 +259,6 @@ function mostrarError(msg) {
       })
 }
 
-function scrollA(contenedor){
-    document.querySelector(contenedor).scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
-}
-
 function ocultarInicio(){
     document.querySelector(".bienvenida").classList.add("oculto");
     document.querySelector(".objetivo").classList.add("oculto");
@@ -284,17 +269,6 @@ function mostrarInicio(){
     document.querySelector(".bienvenida").classList.remove("oculto");
     document.querySelector(".objetivo").classList.remove("oculto");
     document.querySelector(".rutinas").classList.remove("oculto");
-}
-
-function liActivo(evt){
-
-    const a = evt.target;
-    const lis = document.querySelectorAll(".unstyled li");
-
-    lis.forEach(li => {
-        li.classList.remove("activo");
-    });
-    a.parentNode.classList.add("activo");
 }
 
 function insertarFila(evt) {
@@ -447,7 +421,6 @@ function mostrarRutinas() {
 function mostrarFila(evt) {
     const boton = evt.target;
     resetDetalleRutina();
-    /* document.querySelector(".ejercicios-rutina").classList.remove("oct-anim"); */
     const fila = boton.parentNode.parentNode;
     const nombreRutina = fila.firstElementChild.textContent;
     document.querySelector(".ejercicios-rutina h2").textContent = `${nombreRutina}:`;
@@ -469,7 +442,6 @@ function mostrarFila(evt) {
 
 function eliminarFila(evt) {
     const boton = evt.target;
-    /* document.querySelector(".ejercicios-rutina").classList.remove("oct-anim"); */
     const fila = boton.parentNode.parentNode;
     const nombreRutina = fila.firstElementChild.textContent;
     usuarioRegistrado.rutinas = usuarioRegistrado.rutinas.filter((rut) => rut.nombre != nombreRutina);
@@ -567,25 +539,7 @@ function sweetAlertRutina(){
       });
 }
 
-async function traducirTexto() {
-    const res = await fetch("https://libretranslate.com/translate", {
-  method: "POST",
-  body: JSON.stringify({
-    q: "Hello!",
-    source: "en",
-    target: "es"
-  }),
-  headers: { "Content-Type": "application/json" }
-});
-
-console.log(await res.json());
-}
-
 formularioInicio.addEventListener('submit', crearUsuario);
-/* formularioCargaRutina.addEventListener('submit', crearRutina); */
-/* document.querySelectorAll(".unstyled li").forEach(li => {
-    li.addEventListener('click', liActivo);
-}); */
 document.querySelector(".borrar").addEventListener('click', limpiarStorage);
 document.querySelector(".agregarRut").addEventListener('click', sweetAlertRutina);
 document.querySelector(".com-aleat").addEventListener('click', () => {
@@ -596,8 +550,6 @@ document.querySelector(".com-aleat").addEventListener('click', () => {
         return res.json();
       })
       .then(data => {
-        console.log(data);
-        traducirTexto();
 
         Swal.fire({
             html: `
