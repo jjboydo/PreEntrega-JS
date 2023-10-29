@@ -492,6 +492,7 @@ function sweetAlertDetalleRutina(){
             input: '.nombre-rutina',
         }
       })
+      document.querySelector(".ejercicios-rutina").classList.add("oct-anim");
 }
 
 function sweetAlertRutina(){
