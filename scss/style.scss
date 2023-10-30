@@ -569,6 +569,7 @@ main {
   grid-column-end: 4;
   font-family: $typo-titulos;
   color: var(--color-30);
+  text-align: center;
   align-self: self-start;
   padding-top: 1.875rem; 
   justify-self: center;
@@ -728,6 +729,8 @@ main {
   @extend .ejercicios-rutina;
   grid-row-start: 2;
   grid-row-end: 3;
+  grid-column-start: 3;
+  grid-column-end: 4;
   align-self: flex-start;
   gap: .625rem;
   padding-top: 1.25rem;
@@ -836,6 +839,7 @@ main {
     margin-top: 8.25rem;
     width: 90%;
     margin-right: 4.5%;
+    height: 100%;
   }
 
   .guardar-rutina {

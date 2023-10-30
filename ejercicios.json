@@ -1,0 +1,84 @@
+{
+    "ejercicios": [
+      {
+        "nombre": "Press de banca",
+        "musculo": "Pectorales"
+      },
+      {
+        "nombre": "Sentadillas",
+        "musculo": "Piernas"
+      },
+      {
+        "nombre": "Dominadas",
+        "musculo": "Espalda"
+      },
+      {
+        "nombre": "Fondos en paralelas",
+        "musculo": "Tríceps"
+      },
+      {
+        "nombre": "Curl de bíceps",
+        "musculo": "Bíceps"
+      },
+      {
+        "nombre": "Peso muerto",
+        "musculo": "Espalda baja"
+      },
+      {
+        "nombre": "Flexiones",
+        "musculo": "Pectorales"
+      },
+      {
+        "nombre": "Zancadas",
+        "musculo": "Piernas"
+      },
+      {
+        "nombre": "Remo con barra",
+        "musculo": "Espalda"
+      },
+      {
+        "nombre": "Press militar",
+        "musculo": "Hombros"
+      },
+      {
+        "nombre": "Plancha abdominal",
+        "musculo": "Abdominales"
+      },
+      {
+        "nombre": "Elevaciones laterales",
+        "musculo": "Hombros"
+      },
+      {
+        "nombre": "Fondos en máquina",
+        "musculo": "Tríceps"
+      },
+      {
+        "nombre": "Curl martillo",
+        "musculo": "Bíceps"
+      },
+      {
+        "nombre": "Prensa de piernas",
+        "musculo": "Piernas"
+      },
+      {
+        "nombre": "Pull-ups",
+        "musculo": "Espalda"
+      },
+      {
+        "nombre": "Crunches",
+        "musculo": "Abdominales"
+      },
+      {
+        "nombre": "Hip Thrust",
+        "musculo": "Glúteos"
+      },
+      {
+        "nombre": "Extensiones de tríceps",
+        "musculo": "Tríceps"
+      },
+      {
+        "nombre": "Curl concentrado",
+        "musculo": "Bíceps"
+      }
+    ]
+  }
